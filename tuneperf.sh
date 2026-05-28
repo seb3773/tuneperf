@@ -1003,6 +1003,38 @@ apply_sysfs() {
     log_to_file "Enabled SysFS persistence and udev rules."
 }
 
+apply_grub_tweaks() {
+    [ -f /etc/default/grub ] || return 0
+    local grub_modified=0
+    local params=""
+
+    if [ "$exp_enabled" -eq 1 ]; then
+        if [ "$has_zram" -eq 1 ]; then
+            params="$params zswap.enabled=0"
+        fi
+        if [ "$choice_role" -eq 3 ]; then
+            params="$params split_lock_detect=off"
+        fi
+    fi
+
+    if [ -n "$params" ]; then
+        for p in $params; do
+            if ! grep -q "$p" /etc/default/grub; then
+                sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT=\"/GRUB_CMDLINE_LINUX_DEFAULT=\"$p /" /etc/default/grub
+                grub_modified=1
+            fi
+        done
+    fi
+
+    if [ "$grub_modified" -eq 1 ]; then
+        log_info "Updating GRUB with experimental boot parameters ($params)..."
+        if command -v grub2-mkconfig >/dev/null 2>&1; then grub2-mkconfig -o /boot/grub2/grub.cfg >/dev/null 2>&1
+        elif command -v update-grub >/dev/null 2>&1; then update-grub >/dev/null 2>&1
+        elif command -v grub-mkconfig >/dev/null 2>&1; then grub-mkconfig -o /boot/grub/grub.cfg >/dev/null 2>&1
+        fi
+    fi
+}
+
 apply_mitigations_off() {
     if [ "$DISABLE_MITIGATIONS" -eq 1 ] && [ -f /etc/default/grub ]; then
         log_warn "DANGER: Disabling CPU mitigations exposes you to Spectre/Meltdown!"
@@ -1036,7 +1068,14 @@ restore_config() {
     rm -f /etc/systemd/system.conf.d/99-tuneperf-limits.conf
     rm -f /etc/systemd/user.conf.d/99-tuneperf-limits.conf
     
-    if grep -q "mitigations=off" /etc/default/grub 2>/dev/null; then
+    # Restore GRUB
+    if [ -f "$backup_dir/grub.backup" ]; then
+        cp "$backup_dir/grub.backup" /etc/default/grub
+        if command -v grub2-mkconfig >/dev/null 2>&1; then grub2-mkconfig -o /boot/grub2/grub.cfg >/dev/null 2>&1
+        elif command -v update-grub >/dev/null 2>&1; then update-grub >/dev/null 2>&1
+        elif command -v grub-mkconfig >/dev/null 2>&1; then grub-mkconfig -o /boot/grub/grub.cfg >/dev/null 2>&1
+        fi
+    elif grep -q "mitigations=off" /etc/default/grub 2>/dev/null; then
         sed -i 's/mitigations=off //g' /etc/default/grub
         if command -v grub2-mkconfig >/dev/null 2>&1; then grub2-mkconfig -o /boot/grub2/grub.cfg >/dev/null 2>&1
         elif command -v update-grub >/dev/null 2>&1; then update-grub >/dev/null 2>&1
@@ -1129,5 +1168,6 @@ backup_sysctl
 apply_sysctl
 apply_sysfs
 apply_mitigations_off
+apply_grub_tweaks
 
 log_succ "All tunings applied successfully and made persistent!"
