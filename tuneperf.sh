@@ -236,6 +236,18 @@ ask_profile() {
     echo "It may reduce observability (disabling IO stats, NMI watchdog) and increase bufferbloat if not careful."
     read -rp "Enable Experimental tweaks? [y/N]: " choice_exp
     if [[ "$choice_exp" =~ ^[Yy]$ ]]; then exp_enabled=1; else exp_enabled=0; fi
+    
+    cstates_disabled=0
+    if [ "$exp_enabled" -eq 1 ] && [ "$is_laptop" -eq 0 ]; then
+        if [[ "$choice_role" == "3" && "$choice_usage" == "2" ]] || [[ "$choice_role" == "2" && "$choice_usage" == "4" ]]; then
+            echo ""
+            log_warn "DANGER: You selected E-Sports or Pro Audio on a Desktop."
+            echo "We can disable CPU C-States (sleep states) to achieve absolute zero-latency."
+            echo "WARNING: This forces the CPU to stay 100% awake. It will heavily increase power consumption and heat."
+            read -rp "Disable C-States for zero latency? [y/N]: " choice_cstates
+            if [[ "$choice_cstates" =~ ^[Yy]$ ]]; then cstates_disabled=1; fi
+        fi
+    fi
 
     mkdir -p /etc/tuneperf
     cat > "$PROFILE_FILE" <<EOF
@@ -243,6 +255,7 @@ choice_role="$choice_role"
 choice_usage="$choice_usage"
 choice_ipv6="$choice_ipv6"
 exp_enabled="$exp_enabled"
+cstates_disabled="$cstates_disabled"
 EOF
 }
 
@@ -252,6 +265,7 @@ load_profile() {
         choice_usage=$(grep "^choice_usage=" "$PROFILE_FILE" | cut -d= -f2 | tr -d '"' || echo 1)
         choice_ipv6=$(grep "^choice_ipv6=" "$PROFILE_FILE" | cut -d= -f2 | tr -d '"' || echo 1)
         exp_enabled=$(grep "^exp_enabled=" "$PROFILE_FILE" | cut -d= -f2 | tr -d '"' || echo 0)
+        cstates_disabled=$(grep "^cstates_disabled=" "$PROFILE_FILE" | cut -d= -f2 | tr -d '"' || echo 0)
         log_info "Loaded profile from $PROFILE_FILE"
     else
         log_warn "No profile found, using defaults (Desktop/General)"
@@ -260,6 +274,13 @@ load_profile() {
 }
 
 calculate_parameters() {
+    kernel_major=$(uname -r | cut -d. -f1 2>/dev/null || echo 5)
+    kernel_minor=$(uname -r | cut -d. -f2 2>/dev/null || echo 0)
+    is_eevdf=0
+    if [ "$kernel_major" -gt 6 ] || { [ "$kernel_major" -eq 6 ] && [ "$kernel_minor" -ge 6 ]; }; then
+        is_eevdf=1
+    fi
+
     # --- SYSCTL VARS ---
     sys_swappiness=60
     sys_vfs_cache_pressure=100
@@ -570,12 +591,6 @@ validate_and_save_sysctl() {
 generate_sysctl() {
     log_info "Generating sysctl configs..."
     
-    kernel_major=$(uname -r | cut -d. -f1 2>/dev/null || echo 5)
-    kernel_minor=$(uname -r | cut -d. -f2 2>/dev/null || echo 0)
-    is_eevdf=0
-    if [ "$kernel_major" -gt 6 ] || { [ "$kernel_major" -eq 6 ] && [ "$kernel_minor" -ge 6 ]; }; then
-        is_eevdf=1
-    fi
     mkdir -p /etc/tuneperf/generated
     OUT_SWAP="/etc/tuneperf/generated/99-tuneperf-swappiness.conf"
     OUT_PERF="/etc/tuneperf/generated/99-tuneperf-perfs.conf"
@@ -1014,6 +1029,9 @@ apply_grub_tweaks() {
         fi
         if [ "$choice_role" -eq 3 ]; then
             params="$params split_lock_detect=off"
+        fi
+        if [ "${cstates_disabled:-0}" -eq 1 ]; then
+            params="$params intel_idle.max_cstate=1 processor.max_cstate=1"
         fi
     fi
 
