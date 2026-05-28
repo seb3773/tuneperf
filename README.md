@@ -1,4 +1,4 @@
-# TunePerf - The Ultimate Linux System Tuner
+# TunePerf - Linux System Tuner
 
 **TunePerf** is an "Expert-level" system orchestration and performance tuning Bash script for Linux. 
 
