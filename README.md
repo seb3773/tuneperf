@@ -1,6 +1,6 @@
 # TunePerf - Linux System Tuner
 
-**TunePerf** is an "Expert-level" system orchestration and performance tuning Bash script for Linux. 
+**TunePerf** is a system orchestration and performance tuning Bash script for Linux. 
 
 Unlike the myriad of copy-pasted scripts found on GitHub (which blindly apply obsolete `sysctl` values) or heavy background daemons, **TunePerf** is designed with surgical precision and prudence: 
 it scans the complete hardware topology of your machine to generate tailor-made kernel, hardware, and init-system parameters. It applies them in a "One-Shot" manner, leaving absolutely no resident process behind.
