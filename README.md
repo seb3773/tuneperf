@@ -15,6 +15,22 @@ Tools like `tuned` or `tlp` add a background process (often Python-based) that c
 3. **Safety-First**: No risky parameters are enabled by default. Every generated kernel key is dynamically checked against the host's kernel version (`sysctl -n`) before being applied.
 4. **Absolute Reversibility**: Every execution of the script generates a fully timestamped backup of the previous system state. The `--restore` flag allows for an atomic rollback.
 
+
+---
+
+## Graphical User Interface (GUI)
+
+TunePerf includes a comprehensive graphical desktop client (**tuneperfs-gui**) to configure policies, profiles, scheduler weights, and service overrides interactively.
+
+### Key GUI Features
+1. **Fully Autonomous**: The GUI embeds the backend `tuneperf.sh` script, custom icons (compressed via `zx0em`), and multi-language translations (German, French, Spanish, Italian, Polish, and English) inside a single, zero-dependency executable. The script and the GUI are fully independent; you only need to deploy what you intend to use.
+2. **System Language Auto-Detection**: Automatically detects the system locale (e.g., `fr`, `de`, `es`, `it`, `pl`) at boot and loads the correct translation, falling back to English if the locale is not supported.
+3. **No Root Startup Required**: Runs securely under your normal user session and presents a privilege dialog only when applying optimizations or interacting with the service backend.
+
+### Two GUI Versions Available
+* **TDE Dynamic Build**: Compiles dynamically against the **Trinity Desktop Environment (TDE)** libraries for native integration on Trinity/TDE desktops.
+* **Standalone Static Build**: Links statically against **TQt3**, compiling into a single executable that runs on any Linux distribution (Debian, Ubuntu, Mint, Fedora, Arch, etc.) without requiring TDE or any manual library setup.
+
 ---
 
 ## The Often Neglected Details (That this script address)
@@ -84,3 +100,21 @@ TunePerf does not leave a daemon running in the background. It generates:
 1. **Standard Conf Files**: Placed in `/etc/sysctl.d/99-tuneperf-*.conf` (natively loaded by the kernel at boot) and `/etc/modules-load.d/`.
 2. **A SystemD Oneshot Service**: `tuneperf-sysfs.service`, which executes hardware optimizations (Ethtool, EEVDF DebugFS, CPU Governors, I/O Schedulers) during the boot sequence, and then gracefully terminates.
 3. **Dynamic Udev Rules**: For laptops, ACPI rules trigger a minimalist payload specifically when you plug or unplug the charger, instantly adjusting the CPU scaling governors without touching the rest of the stack.
+
+---
+
+## Compilation & Packaging
+
+TunePerf includes simple scripts to compile and package the GUI client for release:
+
+### Build binaries:
+* `./build.sh` — Compiles the TDE dynamic version (**build/src/tuneperfs-gui**).
+* `./build_static.sh` — Compiles the standalone static version (**build-static/src/tuneperfs-gui**).
+
+### Create Debian packages:
+* `./build_deb.sh` — Compiles and builds the dynamic package (**tuneperfs-gui_1.0_amd64.deb**).
+* `./build_static_deb.sh` — Compiles and builds the standalone static package (**tuneperfs-gui-static_1.0_amd64.deb**).
+
+### Create Archive Tarballs:
+* `./build_tar.sh` — Packages the dynamic build as a compressed archive (**tuneperfs-gui_1.0_amd64_dynamic.tar.gz**).
+* `./build_static_tar.sh` — Packages the standalone static build as a compressed archive (**tuneperfs-gui_1.0_amd64_static.tar.gz**).

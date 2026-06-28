@@ -1,0 +1,20 @@
+# Build directories
+build/
+build-static/
+
+# Debian package build artifacts and output binaries
+*.deb
+*.tar.gz
+tuneperfs-gui_*
+tuneperfs-gui-static_*
+
+# Exclude workspace/temporary directories and notes
+tqt3_skills.md
+_work_dont_commit/
+icons_backup/
+
+# OS/Editor temporary files
+.directory
+*~
+*.swp
+.DS_Store

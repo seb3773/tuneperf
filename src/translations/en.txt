@@ -1,0 +1,387 @@
+# UI General & Window
+ui.window_title|TunePerf - Intelligent Linux System Optimizer
+ui.about_title|About TunePerf
+ui.about_ok|OK
+ui.about_warning|Warning
+ui.about_error|Error
+ui.about_success|Success
+
+# Sidebar Navigation & Root
+ui.sidebar_welcome|Welcome
+ui.sidebar_role|System Role
+ui.sidebar_profile|Usage Profile
+ui.sidebar_policies|Policies
+ui.sidebar_editor|Parameters Editor
+ui.sidebar_optimization|Optimization
+ui.root_privileges|Root Privileges
+ui.active|Active
+ui.inactive|Inactive
+
+# Wizard Bottom Buttons
+ui.btn_back|Back
+ui.btn_next|Next
+ui.btn_apply|Apply Optimization
+ui.btn_restore|Restore Backup
+ui.btn_exit|Exit
+ui.btn_finish|Finish
+
+# Page 0: Welcome
+ui.welcome_title|Welcome to TunePerf
+ui.welcome_desc|TunePerf helps you optimize your Linux system performance by auto-tuning kernel parameters, network buffers, CPU schedulers, and power saving modes based on your system role and workload.
+ui.welcome_start_desc|Please select your System Role to begin.
+ui.hardware_info|System Hardware Information
+ui.hardware_cpu|CPU:
+ui.hardware_mem|Memory:
+ui.hardware_kernel|Kernel:
+ui.hardware_net|Network Interface:
+
+# Page 1: Role Selection
+ui.role_title|Select System Role
+ui.role_desc|Choose the primary role of this machine. This configures basic scheduling, virtual memory, and process prioritization defaults.
+role.desktop.name|1) Laptop / Desktop
+role.desktop.desc|General usage, light media, battery optimizations
+role.workstation.name|2) Workstation
+role.workstation.desc|Compilation, development workloads, AI model hosting, containerization
+role.gaming.name|3) Gaming Machine
+role.gaming.desc|AAA gaming, competitive low-latency focus, CPU tuning
+role.server_light.name|4) Server (Light/Medium)
+role.server_light.desc|Nginx, reverse-proxies, Home NAS (Samba/NFS), mixed lightweight tasks
+role.server_heavy.name|5) Server (High Load / DB)
+role.server_heavy.desc|PostgreSQL, MySQL/MariaDB database hosts, Redis, Elasticsearch caches
+role.vm_guest.name|6) Virtual Machine Guest
+role.vm_guest.desc|CI/CD runner, VM guest optimizations, sandbox containers
+
+# Page 2: Usage Profile
+ui.usage_title|Select Usage Profile
+ui.usage_desc|Choose how you use this system to fine-tune network caching, TCP congestion algorithms, and disk read-ahead buffers.
+usage.desktop.1.name|1) Web Browsing & Office
+usage.desktop.1.desc|Light memory footprint, background task prioritization
+usage.desktop.2.name|2) Heavy Browsing & Media
+usage.desktop.2.desc|Increased file descriptors, cache sizing for 4k playback
+usage.desktop.3.name|3) Home Theater PC (HTPC)
+usage.desktop.3.desc|Audio task scheduling priority, silent operations
+usage.desktop.4.name|4) Light coding / Scripts
+usage.desktop.4.desc|Balanced compilation throughput and desktop interactivity
+usage.workstation.1.name|1) Code Compilation
+usage.workstation.1.desc|Heavy CPU/RAM caching, massive parallel task scheduling
+usage.workstation.2.name|2) Docker / Containers Host
+usage.workstation.2.desc|Sub-process limit increases, increased map limits
+usage.workstation.3.name|3) Virtual Machines Host
+usage.workstation.3.desc|NUMA node balancing adjustments, Kernel Samepage Merging (KSM)
+usage.workstation.4.name|4) Audio / Video Processing
+usage.workstation.4.desc|Pro audio low-latency thread scheduling priority
+usage.workstation.5.name|5) AI / Machine Learning
+usage.workstation.5.desc|GPU lock scaling, massive memory allocations limits bypass
+usage.gaming.1.name|1) AAA Games / Intensive 3D
+usage.gaming.1.desc|High memory map counts, minimized dirty writebacks
+usage.gaming.2.name|2) Competitive E-sports
+usage.gaming.2.desc|Extreme low latency, core thread isolation priority
+usage.gaming.3.name|3) Emulation (Heavy CPU)
+usage.gaming.3.desc|Single-thread processor optimizations
+usage.gaming.4.name|4) Cloud Gaming / Streaming
+usage.gaming.4.desc|Network buffers latency minimization, prioritized network tasks
+usage.server_light.1.name|1) Web Server / Reverse Proxy
+usage.server_light.1.desc|Optimized TCP backlogs, faster socket closures
+usage.server_light.2.name|2) File Server (NAS)
+usage.server_light.2.desc|Increased dirty file cache limits, high I/O throughput schedulers
+usage.server_light.3.name|3) Media Server (Plex)
+usage.server_light.3.desc|Continuous media streaming network and block buffers scaling
+usage.server_light.4.name|4) General Purpose / Mixed
+usage.server_light.4.desc|Standard server optimization package
+usage.server_heavy.1.name|1) Heavy Database (PostgreSQL/MySQL)
+usage.server_heavy.1.desc|SysV IPC shared memory expansion (50% RAM), pre-allocated huge pages
+usage.server_heavy.2.name|2) In-Memory DB (Redis)
+usage.server_heavy.2.desc|Disabled transparent hugepages defrag to prevent micro-stutters
+usage.server_heavy.3.name|3) High-Traffic Web/App Server
+usage.server_heavy.3.desc|Massive somaxconn queues, increased local port range
+usage.server_heavy.4.name|4) Big Data / Analytics
+usage.server_heavy.4.desc|Pre-allocated massive heap maps, high thread count limits
+usage.vm_guest.1.name|1) General Purpose / Testing
+usage.vm_guest.1.desc|Clean minimal vm parameters
+usage.vm_guest.2.name|2) CI/CD Runner / Build Node
+usage.vm_guest.2.desc|Fast CPU scaling governor, high network backlogs
+usage.vm_guest.3.name|3) Sandboxed Application
+usage.vm_guest.3.desc|Minimized filesystem cache pressure
+usage.vm_guest.4.name|4) Desktop / GUI usage in VM
+usage.vm_guest.4.desc|Enhanced display responsiveness
+
+# Page 3: Policies
+ui.policies_title|Advanced System Policies
+ui.tab_system_policies|System Policies
+ui.tab_logs|Log Management
+ui.tab_misc|Misc. Optimizations
+ui.help_title|Parameter Explanation
+ui.help_desc|Hover over any setting or parameter to display its detailed description and kernel name here.
+
+# Page 4: Review
+ui.review_title|Review Optimization Parameters
+ui.review_desc|Below is the list of parameters that will be modified. You can review them before applying.
+ui.review_hdr_param|Parameter
+ui.review_hdr_val|Recommended Value
+
+# Page 5: Apply & Execution Status
+ui.apply_title|Applying Performance Optimizations
+ui.apply_status_starting|Starting execution...
+ui.apply_status_running|Applying tuning optimizations, please wait...
+ui.apply_status_restoring|Restoring original configurations, please wait...
+ui.apply_status_success|Optimizations applied successfully!
+ui.apply_status_success_partial|Some parameters failed to apply. Check execution log for details.
+ui.apply_status_success_restore|Restore completed successfully!
+ui.apply_status_failed|Optimization execution failed!
+ui.apply_status_failed_restore|Restore execution failed!
+
+# About Dialog Details
+ui.about_version_tde|v%1 - for Trinity DE
+ui.about_version_static|v%1 - static tqt3
+ui.about_by|by Seb3773
+
+# State Status & Checkbox Values
+Enabled|Enabled
+Disabled|Disabled
+Local-Only|Local-Only
+Disable Completely|Disable Completely
+Keep Enabled|Keep Enabled
+Not Installed|Not Installed
+Unsupported|Unsupported
+
+# Sysfs Command Label Keys
+label.EEVDF Scheduler base slice time|EEVDF Scheduler base slice time
+label.Transparent Huge Pages (THP)|Transparent Huge Pages (THP)
+label.THP Defragmentation policy|THP Defragmentation policy
+label.Khugepaged daemon defrag sleep cycle|Khugepaged daemon defrag sleep cycle
+label.ZRAM Compression Algorithm (zstd)|ZRAM Compression Algorithm (zstd)
+label.ZRAM CPU Compression Streams scaling|ZRAM CPU Compression Streams scaling
+label.Block devices I/O Read-Ahead Buffer size|Block devices I/O Read-Ahead Buffer size
+label.Block devices maximum I/O request size|Block devices maximum I/O request size
+label.Disable I/O Merges for NVMe drives|Disable I/O Merges for NVMe drives
+label.Disable disk entropy accumulation (reduces latency)|Disable disk entropy accumulation (reduces latency)
+label.CPU Scaling Governor|CPU Scaling Governor
+label.CPU Energy Performance Preference (EPP)|CPU Energy Performance Preference (EPP)
+label.Enable AMD P-State Active Mode|Enable AMD P-State Active Mode
+label.Force PCIe ASPM to maximum performance|Force PCIe ASPM to maximum performance
+label.Nvidia GPU Persistence Mode (keeps GPU awake)|Nvidia GPU Persistence Mode (keeps GPU awake)
+label.Kernel Samepage Merging (KSM) for virtualization|Kernel Samepage Merging (KSM) for virtualization
+label.Network Interface Transmit Queue Length (txqueuelen)|Network Interface Transmit Queue Length (txqueuelen)
+label.Ethtool Ring Buffer optimization (reduces packet drops)|Ethtool Ring Buffer optimization (reduces packet drops)
+label.TCP Segmentation Offload (TSO/GSO/GRO)|TCP Segmentation Offload (TSO/GSO/GRO)
+label.Receive Packet Steering (RPS) multicore mapping|Receive Packet Steering (RPS) multicore mapping
+label.tcp_bbr|tcp_bbr
+label.sch_fq|sch_fq
+ui.no_modules_warning|No custom kernel modules are configured.
+
+Enable 'Experimental Tweaks' in the previous step
+to activate high-performance modules (BBR, FQ).
+label.Enable Experimental Tweaks|Enable Experimental Tweaks
+label.Disable CPU C-States (Sleep states)|Disable CPU C-States (Sleep states)
+label.disable_journald|Disable Systemd Journald Logs
+label.disable_rsyslog|Disable Syslog & Kernel Logs (rsyslog)
+label.disable_xorg|Disable Xorg & TDM Display Logs
+label.disable_boot|Disable Boot & Service Logs
+label.disable_pam|Disable Login & Mail Notification Logs
+label.disable_coredumps|Disable Core Dumps
+label.disable_modemmanager|Disable ModemManager service
+label.disable_nm_wait|Disable NetworkManager-wait-online service
+label.disable_smbd|Disable Samba smbd service
+label.disable_nmbd|Disable Samba nmbd service
+label.disable_serial_getty|Disable serial-getty service
+label.disable_colord|Disable colord service
+label.disable_smartd|Disable smartd service
+label.disable_usb_legacy|Disable legacy usbmouse/usbkbd modules (in favor of hid)
+label.disable_pcspkr|Disable pc speaker module
+label.disable_bluetooth|Disable Bluetooth service
+label.disable_print|Disable print services (CUPS/Avahi)
+label.disable_apparmor|Disable AppArmor
+label.disable_ufw|Disable UFW Firewall
+label.disable_bluez_cups|Disable Bluez-cups printing backend
+ui.help_desc_policy|Hover over any policy or log switch to read its detailed optimization purpose.
+
+# --- Parameter and command explanations dictionary ---
+vm.swappiness|Controls the kernel's preference for swapping out anonymous memory vs caching files. Lower values reduce swapping and latency, higher values increase throughput under memory pressure.
+vm.vfs_cache_pressure|Controls the kernel's tendency to reclaim directory and inode objects from cache. Lower values keep filesystem metadata cached, improving responsiveness for repeated file operations.
+vm.dirty_background_ratio|Percentage of system memory that can be filled with dirty (unwritten) pages before the background writeback daemon starts writing them to disk.
+vm.dirty_ratio|Percentage of system memory that can be filled with dirty pages before any active process is forced to block and write dirty data to disk.
+vm.dirty_background_bytes|Number of dirty bytes at which the background writeback daemon starts writing data. (Mutually exclusive with dirty_background_ratio).
+vm.dirty_bytes|Number of dirty bytes at which active processes are forced to block and write data. (Mutually exclusive with dirty_ratio).
+vm.dirty_expire_centisecs|Defines how long dirty data can remain in memory before it is considered old enough to be written back to disk (in 100ths of a second).
+vm.dirty_writeback_centisecs|Defines the interval at which the background writeback daemon runs to check for dirty pages to write to disk (in 100ths of a second).
+vm.max_map_count|Maximum number of memory map areas a process may have. Crucial for heavy applications (compilers, databases, AAA games via Proton) to prevent out-of-memory crashes.
+vm.compaction_proactiveness|Determines how proactively the kernel compacts memory to create contiguous free pages. Higher values keep hugepages available but can increase background CPU overhead.
+vm.watermark_boost_factor|Controls the aggressiveness of memory reclaim boost when fragmentation is detected. Disabling or lowering this reduces micro-stuttering under heavy RAM usage.
+vm.watermark_scale_factor|Defines the step size of free memory watermarks. Increasing this makes memory reclaim trigger earlier, avoiding direct allocation latency spikes.
+vm.zone_reclaim_mode|Controls reuse of local node memory in NUMA systems. Disabling this allows page allocations from other NUMA nodes, avoiding aggressive local cache evictions.
+vm.page-cluster|Controls the number of pages read from swap in a single attempt. Lower values (like 0) reduce latency for SSDs/NVMEs, larger values are optimized for slow mechanical HDDs.
+vm.min_free_kbytes|Minimum amount of free memory (in KB) the kernel preserves to avoid deadlock during memory reclaim.
+vm.dirtytime_expire_seconds|Time in seconds after which cached dirty metadata/times must be synced to disk.
+vm.extfrag_threshold|Threshold indicating when the kernel should start compacting memory rather than reclaiming pages due to external fragmentation.
+vm.stat_interval|Frequency (in seconds) at which the kernel updates virtual memory statistics, balancing performance overhead vs accuracy.
+vm.overcommit_memory|Defines the kernel's overcommit memory policy. Mode 1 allows all allocations, while Mode 2 enforces a strict limit based on swap and RAM.
+vm.overcommit_ratio|Percentage of physical RAM used to calculate the strict memory allocation limit under overcommit mode 2.
+vm.nr_hugepages|Number of pre-allocated persistent hugepages (usually 2MB) allocated in RAM for virtualization or database acceleration.
+kernel.sched_child_runs_first|Tells the scheduler to run child processes first after fork. Useful for shells and interactive GUIs to reduce latency.
+kernel.sched_autogroup_enabled|Groups tasks by TTY session to automatically isolate compile/build tasks from desktop GUI tasks, keeping the desktop interface buttery smooth.
+kernel.sched_cfs_bandwidth_slice_us|Sets the quantum size for CFS CPU quota limits. Lower values reduce container latency, higher values improve throughput.
+kernel.sched_latency_ns|Scheduler period for running all tasks. Lower values reduce latency for desktop/audio tasks, higher values improve server/throughput efficiency.
+kernel.sched_migration_cost_ns|Time the scheduler considers a task 'cache hot' before migrating it to another CPU core. Prevents ping-ponging tasks and cache thrashing.
+kernel.sched_min_granularity_ns|Minimum duration a task is guaranteed to run on a CPU before being pre-empted. Lower values improve responsiveness under contention.
+kernel.sched_wakeup_granularity_ns|Controls how easily waking tasks can pre-empt currently running tasks. Lower values improve wake-up latency but can increase context switching overhead.
+kernel.numa_balancing|Enables or disables automatic task and memory page migration between NUMA nodes. Disabling this removes background balancing overhead in single-socket setups.
+kernel.sysrq|Controls what operations can be triggered via SysRq key sequences. A value of 1 enables all functions for recovery, while lower values restrict them for security.
+kernel.nmi_watchdog|Enables the NMI watchdog to detect hard locks. Disabling this reduces power consumption and saves hardware timer interrupts.
+kernel.panic|Number of seconds the kernel waits after a panic before auto-rebooting. A value of 0 disables auto-reboot, forcing the system to halt for debugging.
+kernel.panic_on_oops|Determines whether a kernel oops (minor crash) immediately triggers a panic (reboot). Recommended for servers to avoid run-away corrupted states.
+fs.aio-max-nr|Maximum number of concurrent asynchronous I/O operations allowed system-wide. Crucial for databases and high-performance I/O applications.
+kernel.timer_migration|Allows the scheduler to migrate timers between CPU cores to conserve power on idle cores.
+kernel.core_uses_pid|Appends the Process ID (PID) to core dump file names, making it easier to debug multiple crashing processes.
+kernel.sched_nr_migrate|Controls the number of tasks migrated across CPUs in a single scheduler run to balance overhead and responsiveness.
+kernel.shmmax|Maximum size of a single shared memory segment (in bytes) allowed.
+kernel.shmall|Maximum total shared memory page count allowed system-wide.
+kernel.msgmax|Maximum size (in bytes) of a single message in a System V message queue.
+kernel.msgmnb|Maximum size (in bytes) of a System V message queue backlog.
+net.core.somaxconn|Maximum backlog queue size for listening TCP sockets. Essential to increase for high-concurrency servers to prevent connection drops.
+net.core.netdev_max_backlog|Maximum number of packets queued in the network input queue when the CPU receives packets faster than the interface driver can process them.
+net.core.rmem_max|Maximum receive socket buffer size (in bytes). Crucial for high-bandwidth networks to sustain maximum throughput.
+net.core.wmem_max|Maximum send socket buffer size (in bytes). Crucial for high-bandwidth networks to sustain maximum throughput.
+net.core.rmem_default|Default receive socket buffer size (in bytes).
+net.core.wmem_default|Default send socket buffer size (in bytes).
+net.core.optmem_max|Maximum auxiliary buffer size allocated per socket for control data (ancillary headers).
+net.ipv4.tcp_rmem|Minimum, default, and maximum receive buffer sizes for TCP sockets. The system auto-tunes buffer sizes between these limits based on memory pressure.
+net.ipv4.tcp_wmem|Minimum, default, and maximum send buffer sizes for TCP sockets. The system auto-tunes buffer sizes between these limits based on memory pressure.
+net.ipv4.tcp_max_syn_backlog|Maximum number of queued SYN requests. Helps withstand SYN flood attacks and handle large bursts of new incoming connections.
+net.ipv4.tcp_slow_start_after_idle|Determines whether TCP congestion window resets to initial state after connection goes idle. Disabling it maintains high speed for traffic bursts.
+net.ipv4.tcp_tw_reuse|Allows the kernel to safely recycle TIME_WAIT sockets for new connections. Extremely beneficial for high-concurrency servers.
+net.ipv4.tcp_fin_timeout|Time to wait for a FIN packet before closing a socket. Reducing this releases dead sockets faster, saving system memory.
+net.ipv4.tcp_keepalive_time|How long a TCP connection must be idle before keepalive probes are sent.
+net.ipv4.tcp_keepalive_intvl|Interval between individual keepalive probes.
+net.ipv4.tcp_keepalive_probes|Maximum number of keepalive probes to send before dropping the connection.
+net.ipv4.tcp_fastopen|Enables TCP Fast Open, allowing data to be exchanged during the initial handshake, reducing connection establishment latency.
+net.ipv4.tcp_congestion_control|Selects the TCP congestion control algorithm. BBR is recommended for high-latency WAN links, cubic/reno for general use.
+net.ipv4.tcp_notsent_lowat|Limits queued unsent TCP data in buffers. Minimizes bufferbloat and latency on local sockets.
+net.ipv4.tcp_ecn|Enables Explicit Congestion Notification (ECN) to mitigate packet loss by requesting routers to throttle instead of dropping packets.
+net.ipv4.tcp_sack|Enables Selective Acknowledgment (SACK), allowing the receiver to acknowledge out-of-order packets, avoiding redundant retransmissions.
+net.ipv4.tcp_dsack|Enables Duplicate SACK (DSACK) to let the sender know if a packet was retransmitted unnecessarily, improving congestion control accuracy.
+net.ipv4.tcp_fack|Enables Forward Acknowledgment (FACK) to reduce unnecessary retransmissions when multiple packets are lost in a flight.
+net.ipv4.tcp_low_latency|Tells the TCP stack to prioritize low latency over maximum throughput. Recommended for competitive gaming and real-time communications.
+net.ipv4.tcp_autocorking|Enables automatic coalescing of small writes into single packets. Disabling this reduces latency for small, immediate packet deliveries.
+net.ipv4.ip_local_port_range|Port range used for outbound client connections. Widening this prevents port exhaustion on high-traffic servers.
+net.ipv4.tcp_timestamps|Enables TCP Timestamps to improve round-trip time estimation and protect against wrapped sequence numbers.
+net.ipv4.tcp_retries2|Maximum number of times TCP tries to retransmit an unacknowledged packet before dropping the connection.
+net.ipv4.tcp_syn_retries|Number of SYN packets sent before giving up on an outbound TCP connection attempt.
+net.ipv4.tcp_synack_retries|Number of SYN/ACK packets sent before abandoning an incoming TCP connection handshake.
+net.ipv4.tcp_early_retrans|Enables TCP Early Retransmit to recover packet loss faster under small congestion window sizes.
+net.ipv4.tcp_mtu_probing|Automatically detects Path MTU (Maximum Transmission Unit) sizes when ICMP black holes block packet delivery.
+net.ipv4.tcp_syncookies|Enables TCP SYN cookies to protect the system against SYN flood DDoS attacks by verifying connections without allocating socket memory.
+net.ipv4.tcp_window_scaling|Enables TCP Window Scaling to support receive windows larger than 64KB, critical for high-latency WAN links.
+net.ipv4.tcp_moderate_rcvbuf|Dynamically auto-tunes TCP receive window buffer sizes to match network latency and speed.
+net.ipv4.tcp_abort_on_overflow|Aborts connections when a listening service is too busy to accept new connections, freeing client resources immediately.
+net.ipv4.tcp_max_tw_buckets|Limits the maximum number of TIME_WAIT sockets kept in memory to prevent denial-of-service socket exhaustion.
+net.core.netdev_budget|Maximum number of packets processed by the polling driver in a single NAPI execution loop.
+net.core.netdev_budget_usecs|Maximum execution time allowed for network packet polling in microseconds.
+net.netfilter.nf_conntrack_max|Maximum number of tracked network connections in the netfilter state table.
+net.netfilter.nf_conntrack_tcp_timeout_established|Time in seconds that an idle established TCP connection is kept in the connection tracking table.
+net.ipv4.tcp_limit_output_bytes|Controls the maximum size of unsent TCP data queued for the network card, reducing local bufferbloat.
+net.core.default_qdisc|Sets the default queueing discipline (like fq, cake, or fq_codel) for all network interfaces.
+net.ipv6.conf.all.disable_ipv6|Disables IPv6 protocol support on all network interfaces to simplify routing and reduce network attack surface.
+net.ipv6.conf.default.disable_ipv6|Disables IPv6 protocol support on all newly created network interfaces.
+net.ipv6.conf.lo.disable_ipv6|Disables IPv6 protocol support on the loopback interface.
+net.ipv6.conf.all.accept_ra|Controls acceptance of IPv6 Router Advertisements. Disabling it prevents automatic router detection for security.
+net.ipv6.conf.default.accept_ra|Default Router Advertisement policy for newly created network interfaces.
+net.ipv6.conf.all.autoconf|Enables or disables automatic IPv6 address configuration using SLAAC.
+net.ipv6.conf.default.autoconf|Default automatic IPv6 configuration policy for newly created network interfaces.
+net.ipv4.conf.all.rp_filter|Enables Reverse Path Filtering (RPF) to prevent IP spoofing by verifying that incoming packets arrive on the expected routing path.
+net.ipv4.conf.default.rp_filter|Default Reverse Path Filtering setting for newly created network interfaces.
+net.ipv4.conf.all.accept_source_route|Permits source routing headers, which allow sender-specified routes. Disabled by default for security to block redirection attacks.
+net.ipv4.conf.default.accept_source_route|Default source routing policy for newly created network interfaces.
+net.ipv4.conf.all.accept_redirects|Allows ICMP redirects. Disabled on secure systems to prevent attackers from routing traffic through intermediate systems.
+net.ipv4.conf.default.accept_redirects|Default ICMP redirect policy for newly created network interfaces.
+net.ipv4.conf.all.secure_redirects|Restricts ICMP redirect acceptance only to known gateways. Disabled for maximum security.
+net.ipv4.conf.default.secure_redirects|Default secure redirect policy for newly created network interfaces.
+net.ipv4.conf.all.send_redirects|Enables sending ICMP redirects. Recommended to disable on non-router hosts to avoid advertising route changes.
+net.ipv4.conf.default.send_redirects|Default ICMP redirect sending policy for newly created network interfaces.
+net.ipv4.conf.all.log_martians|Logs packets with impossible (spoofed) source IP addresses to syslog.
+net.ipv4.conf.default.log_martians|Default logged spoofed packet policy for newly created network interfaces.
+kernel.kptr_restrict|Restricts access to kernel symbol addresses in /proc/kallsyms. Level 2 hides them completely to prevent exploits from locating kernel functions.
+kernel.dmesg_restrict|Restricts access to the system log buffer (dmesg). Recommended to enable to prevent non-privileged users from reading kernel debug outputs.
+kernel.perf_event_paranoid|Restricts access to performance events. Higher values prevent non-root users from reading CPU performance counters.
+kernel.yama.ptrace_scope|Restricts process inspection/ptrace. Recommended to restrict to parent/child relations to block memory snooping.
+fs.protected_hardlinks|Blocks creating hardlinks to files that the user does not own, preventing symlink/hardlink race vulnerabilities.
+fs.protected_symlinks|Blocks following symlinks in world-writable directories owned by other users, preventing file replacement attacks.
+fs.protected_fifos|Blocks opening FIFOs in world-writable directories that are not owned by the active user.
+fs.protected_regular|Blocks opening regular files in world-writable directories that are not owned by the active user.
+fs.file-max|Maximum number of file descriptors the kernel will allocate. Crucial for massive container hosts or active file servers.
+fs.inotify.max_user_watches|Maximum number of directory paths monitored by inotify. Essential to increase for active code development workspaces or IDEs.
+fs.inotify.max_user_instances|Maximum number of active inotify instances a user can create.
+kernel.pid_max|Maximum Process ID number. Increasing this prevents PID exhaustion on servers running thousands of parallel threads.
+vm.mmap_min_addr|Minimum virtual address allowed for user space memory mappings, preventing null-pointer dereference security exploits.
+kernel.randomize_va_space|Enables Address Space Layout Randomization (ASLR) to prevent memory exploits from predicting target addresses.
+kernel.unprivileged_bpf_disabled|Restricts unprivileged users from using the eBPF compiler, preventing side-channel and kernel exploitation.
+net.core.bpf_jit_enable|Enables the Just-In-Time (JIT) compiler for eBPF bytecode to execute network filters at hardware speed.
+net.core.bpf_jit_harden|Hardens the eBPF JIT compiler by enabling constant blinding to protect against JIT spraying exploits.
+kernel.kexec_load_disabled|Disables the kexec system call to prevent loading a new kernel at runtime, blocking rootkits from bypassing secure boot chains.
+fs.suid_dumpable|Controls how core dumps are handled for setuid binaries to prevent leaking sensitive credentials in memory dumps.
+net.ipv4.tcp_rfc1337|Protects against TIME_WAIT assassination hazards (premature socket resets) as specified by RFC 1337.
+net.ipv4.icmp_echo_ignore_broadcasts|Tells the system to ignore ICMP echo (ping) requests sent to broadcast addresses, preventing Smurf DDoS amplification attacks.
+net.ipv4.icmp_ignore_bogus_error_responses|Prevents logging bogus ICMP error responses to avoid syslog filling up with network noise.
+net.ipv4.conf.all.arp_ignore|Controls how ARP requests are answered when receiving requests on different subnets or interfaces.
+net.ipv4.conf.all.arp_announce|Controls the level of restriction for announcing local IP addresses in ARP requests on interfaces.
+EEVDF Scheduler base slice time|Sets the basic CFS run queue slice time. Lowering this (e.g. to 1ms) improves latency and desktop responsiveness under CPU load.
+Transparent Huge Pages (THP)|Allows the kernel to aggregate standard 4KB memory pages into 2MB huge pages, reducing TLB cache misses. Enabling it improves compilation and VM speeds, but can cause latency spikes in databases.
+THP Defragmentation policy|Controls how aggressively the kernel defragments memory in the background to build hugepages. 'madvise' defragments only when requested by applications, avoiding system-wide latency spikes.
+Khugepaged daemon defrag sleep cycle|Duration the khugepaged background defragmenter sleeps between scans. Increasing this reduces background CPU wakeups.
+ZRAM Compression Algorithm (zstd)|Selects the compression algorithm for ZRAM swap space. Zstd provides the optimal balance of high compression ratio and fast decompression speed.
+ZRAM CPU Compression Streams scaling|Sets the number of parallel CPU compression threads allowed per ZRAM device. Scaling this to the CPU core count maximizes compression speed.
+Block devices I/O Read-Ahead Buffer size|Sets the amount of data the OS reads in advance during sequential read requests. Higher values are best for HDDs, lower values (e.g. 128KB) are optimal for low-latency SSDs/NVMEs.
+Block devices maximum I/O request size|Maximum size of an I/O request submitted to block devices. A value of 256KB-512KB is optimal for low-latency NVMe drives.
+Disable I/O Merges for NVMe drives|Disables I/O merges. Since NVMe devices are extremely fast and support massive hardware queues, skipping OS merges reduces CPU overhead and latency.
+Disable disk entropy accumulation (reduces latency)|Disables disk entropy contribution. This stops disk I/O interrupts from seeding the random generator, reducing overhead on high-frequency SSD writes.
+CPU Scaling Governor|Sets the CPU governor. 'performance' forces CPU cores to run at their maximum frequency to minimize latency, while 'powersave/schedutil' balances power consumption.
+CPU Energy Performance Preference (EPP)|Tells the hardware to prioritize maximum performance, energy saving, or a balance of both at the CPU firmware level.
+Enable AMD P-State Active Mode|Enables the modern AMD P-state driver in active mode, allowing autonomous CPU frequency scaling guided by the hardware itself for optimal efficiency.
+Force PCIe ASPM to maximum performance|Forces PCIe Active State Power Management to performance, keeping link channels fully active, eliminating wakeup latency, and maximizing transfer throughput.
+Nvidia GPU Persistence Mode (keeps GPU awake)|Enables Nvidia GPU persistence daemon. Keeps the Nvidia driver loaded and the GPU in an active low-power state, avoiding 2-second wake-up delays on CUDA tasks.
+Kernel Samepage Merging (KSM) for virtualization|Allows the kernel to deduplicate identical memory pages across virtual machines. Saves significant RAM but introduces minor background CPU overhead.
+Network Interface Transmit Queue Length (txqueuelen)|Queue size for outgoing network packets. Lowering this reduces network bufferbloat on slow links; raising it prevents packet drops on high-speed 10G+ servers.
+Ethtool Ring Buffer optimization (reduces packet drops)|Maximizes network card RX/TX ring buffers to prevent packet drops during heavy traffic spikes or high-throughput network operations.
+TCP Segmentation Offload (TSO/GSO/GRO)|Offloads TCP segment assembly and fragmentation directly to the network card hardware, drastically reducing host CPU overhead under high network loads.
+Receive Packet Steering (RPS) multicore mapping|Distributes network packet processing across multiple CPU cores, preventing single-core CPU bottlenecks on high-pps network interfaces.
+tcp_bbr|Bottleneck Bandwidth and RTT (BBR) congestion control module. Drastically improves network throughput and latency on high-loss WAN links.
+sch_fq|Fair Queueing traffic control module. Prioritizes packets per socket connection and pacing to reduce bufferbloat.
+Enable Experimental Tweaks|Enables advanced limits bypass, aggressive kernel writebacks, BBR TCP congestion control, and disables observation logging for maximum speed.
+Disable CPU C-States (Sleep states)|Prevents CPU cores from entering deep sleep states (C1-C6). This guarantees absolute zero-latency wakeup, but heavily increases power usage and heat.
+disable_journald|Stops writing systemd journal logs to disk or memory, drastically reducing continuous disk write operations and CPU logging overhead.
+disable_rsyslog|Stops and masks rsyslog service/socket, disables syslog for dbus service, and disables syslog kernel messages to save CPU cycles and disk writes.
+disable_xorg|Disables logging of graphical display errors, Trinity TDM session logging, and redirects .xsession-errors to /dev/null to reduce active disk writes.
+disable_boot|Disables logging of system boot messages, CUPS printing daemon, and preload utility logs, ensuring faster, silent startups with less I/O.
+disable_pam|Stops recording user login sessions, PAM lastlog, wtmp logs, and email notifications to significantly reduce disk activity on multi-user systems.
+disable_coredumps|Stops kernel core dumps during crashes. Saves disk space and I/O overhead on system errors.
+disable_modemmanager|Disables ModemManager service. Prevents background scanning of serial ports for modems, speeding up boot.
+disable_nm_wait|Disables NetworkManager-wait-online service. Speeds up startup by not blocking boot waiting for a network connection.
+disable_smbd|Disables Samba file sharing daemon (smbd). Frees memory if you do not share folders on your local network.
+disable_nmbd|Disables NetBIOS name server daemon (nmbd). Reduces network background listening services.
+disable_serial_getty|Disables serial terminal console login service on ttyS0. Reduces background terminal listening processes.
+disable_colord|Disables colord color management daemon. Frees system memory on laptops and servers.
+disable_smartd|Disables S.M.A.R.T. disk monitoring daemon. Reduces disk wakeups and background checks.
+disable_usb_legacy|Blacklists legacy usbmouse and usbkbd modules. Forces unified use of the modern, optimized usbhid driver.
+disable_pcspkr|Blacklists motherboard pcspkr beeper module. Silences annoying motherboard hardware beeps.
+disable_bluetooth|Disables bluetooth.service. Saves power and improves system security when wireless is not needed.
+disable_print|Disables CUPS and Avahi network print discovery. Frees background memory and prevents printer network polling.
+disable_apparmor|Disables AppArmor security profiling. Reduces kernel execution overhead and speeds up process spawning.
+disable_ufw|Disables UFW firewall. Recommended if you already have a network or hardware router firewall.
+disable_bluez_cups|Disables bluetooth printer backend. Prevents CUPS bluetooth device polling and reduces system wakeups.
+ui.msg_success|Success
+ui.msg_warning|Warning
+ui.msg_error|Error
+ui.msg_question|Confirmation
+ui.msg_hw_scan_error_title|Hardware Scan Error
+ui.msg_hw_scan_error_text|Could not successfully run tuneperf.sh to detect hardware or build parameters.
+ui.msg_restore_confirm_title|Restore Backups
+ui.msg_restore_confirm_text|Are you sure you want to revert all system tuning modifications and restore the original configurations?
+ui.msg_tuning_success_title|Tuning Success
+ui.msg_tuning_success_text|All custom optimization parameters have been applied and persistent rules generated successfully!
+ui.msg_tuning_warning_title|Tuning Warning
+ui.msg_tuning_warning_text|Some parameters failed to apply. Check execution log for details.
+ui.msg_tuning_error_title|Tuning Error
+ui.msg_tuning_error_text|Failed to apply optimization parameters. Check execution log for details.
+ui.msg_restore_success_title|Restore Success
+ui.msg_restore_success_text|Original configurations restored, persistence service disabled, and udev rules removed successfully.
+ui.msg_restore_error_title|Restore Error
+ui.msg_restore_error_text|Failed to restore backup configurations. Check log for details.

@@ -1,0 +1,387 @@
+# UI General & Window
+ui.window_title|TunePerf - Intelligenter Linux-Systemoptimierer
+ui.about_title|Über TunePerf
+ui.about_ok|OK
+ui.about_warning|Warnung
+ui.about_error|Fehler
+ui.about_success|Erfolg
+
+# Sidebar Navigation & Root
+ui.sidebar_welcome|Willkommen
+ui.sidebar_role|Systemrolle
+ui.sidebar_profile|Nutzungsprofil
+ui.sidebar_policies|Richtlinien
+ui.sidebar_editor|Parameter-Editor
+ui.sidebar_optimization|Optimierung
+ui.root_privileges|Root-Rechte
+ui.active|Aktiv
+ui.inactive|Inaktiv
+
+# Wizard Bottom Buttons
+ui.btn_back|Zurück
+ui.btn_next|Weiter
+ui.btn_apply|Optimierung anwenden
+ui.btn_restore|Sicherung wiederherstellen
+ui.btn_exit|Beenden
+ui.btn_finish|Fertig
+
+# Page 0: Welcome
+ui.welcome_title|Willkommen bei TunePerf
+ui.welcome_desc|TunePerf hilft Ihnen, die Leistung Ihres Linux-Systems zu optimieren, indem es automatisch Kernel-Parameter, Netzwerkpuffer, CPU-Scheduler und Energiesparmodi basierend auf der Systemrolle und Arbeitslast anpasst.
+ui.welcome_start_desc|Bitte wählen Sie die Systemrolle aus, um zu beginnen.
+ui.hardware_info|System-Hardware-Informationen
+ui.hardware_cpu|CPU:
+ui.hardware_mem|Speicher:
+ui.hardware_kernel|Kernel:
+ui.hardware_net|Netzwerkschnittstelle:
+
+# Page 1: Role Selection
+ui.role_title|Systemrolle auswählen
+ui.role_desc|Wählen Sie die Hauptrolle dieses Computers. Dies konfiguriert die grundlegende Planung, virtuellen Speicher und Standard-Prozessprioritäten.
+role.desktop.name|1) Laptop / Desktop
+role.desktop.desc|Allgemeine Nutzung, leichtes Multimedia, Batterieoptimierungen
+role.workstation.name|2) Arbeitsstation
+role.workstation.desc|Kompilierung, Entwicklungslasten, Hosting von KI-Modellen, Containerisierung
+role.gaming.name|3) Gaming-Maschine
+role.gaming.desc|AAA-Gaming, Fokus auf wettbewerbsfähige niedrige Latenz, CPU-Tuning
+role.server_light.name|4) Server (Leicht/Mittel)
+role.server_light.desc|Nginx, Reverse-Proxies, Heim-NAS (Samba/NFS), gemischte leichte Aufgaben
+role.server_heavy.name|5) Server (Hohe Last / DB)
+role.server_heavy.desc|PostgreSQL-, MySQL/MariaDB-Datenbank-Hosts, Redis-, Elasticsearch-Caches
+role.vm_guest.name|6) Virtueller Maschinen-Gast
+role.vm_guest.desc|CI/CD-Runner, VM-Gast-Optimierungen, Sandbox-Container
+
+# Page 2: Usage Profile
+ui.usage_title|Nutzungsprofil auswählen
+ui.usage_desc|Wählen Sie, wie Sie dieses System verwenden, um Netzwerk-Caching, TCP-Congestion-Algorithmen und Festplatten-Read-Ahead-Puffer zu optimieren.
+usage.desktop.1.name|1) Web-Browsing und Büro
+usage.desktop.1.desc|Geringer Speicherbedarf, Priorisierung von Hintergrundaufgaben
+usage.desktop.2.name|2) Intensives Browsing und Multimedia
+usage.desktop.2.desc|Erhöhte Dateideskriptoren, Caching für 4k-Wiedergabe
+usage.desktop.3.name|3) Home- Theater-PC (HTPC)
+usage.desktop.3.desc|Audio-Task-Scheduling-Priorität, leiser Betrieb
+usage.desktop.4.name|4) Leichtes Programmieren / Skripte
+usage.desktop.4.desc|Ausgewogene Kompilierungs-Durchsatz und Desktop-Interaktivität
+usage.workstation.1.name|1) Code-Kompilierung
+usage.workstation.1.desc|Schweres CPU/RAM-Caching, massives paralleles Task-Scheduling
+usage.workstation.2.name|2) Docker / Container-Host
+usage.workstation.2.desc|Erhöhung von Unterprozess-Limits, Erhöhung von Map-Limits
+usage.workstation.3.name|3) Virtueller Maschinen-Host
+usage.workstation.3.desc|NUMA-Knoten-Balance-Anpassungen, Kernel-Samepage-Merging (KSM)
+usage.workstation.4.name|4) Audio / Video-Verarbeitung
+usage.workstation.4.desc|Pro-Audio-Niedriglatenz-Thread-Scheduling-Priorität
+usage.workstation.5.name|5) KI / Machine Learning
+usage.workstation.5.desc|GPU-Lock-Scaling, Umgehung von massiven Speicherzuweisungs-Limits
+usage.gaming.1.name|1) AAA-Spiele / Intensive 3D
+usage.gaming.1.desc|Hohe Speicher-Map-Zahlen, minimierte Dirty-Writebacks
+usage.gaming.2.name|2) Wettbewerbs-E-Sports
+usage.gaming.2.desc|Extrem niedrige Latenz, Priorität der Core-Thread-Isolation
+usage.gaming.3.name|3) Emulation (CPU-intensiv)
+usage.gaming.3.desc|Single-Thread-Prozessor-Optimierungen
+usage.gaming.4.name|4) Cloud-Gaming / Streaming
+usage.gaming.4.desc|Minimierung der Netzwerkpuffer-Latenz, priorisierte Netzwerkaufgaben
+usage.server_light.1.name|1) Web-Server / Reverse Proxy
+usage.server_light.1.desc|Optimierte TCP-Backlogs, schnellere Socket-Schließungen
+usage.server_light.2.name|2) Dateiserver (NAS)
+usage.server_light.2.desc|Erhöhte Dirty-Datei-Cache-Limits, I/O-Durchsatz-Scheduler
+usage.server_light.3.name|3) Medienserver (Plex)
+usage.server_light.3.desc|Skalierung von kontinuierlichen Medien-Streaming-Netzwerk- und Blockpuffern
+usage.server_light.4.name|4) Allzweck / Gemischt
+usage.server_light.4.desc|Standard-Server-Optimierungspaket
+usage.server_heavy.1.name|1) Schwere Datenbank (PostgreSQL/MySQL)
+usage.server_heavy.1.desc|SysV-IPC-Shared-Memory-Erweiterung (50% RAM), vorab zugewiesene Huge Pages
+usage.server_heavy.2.name|2) In-Memory-DB (Redis)
+usage.server_heavy.2.desc|Deaktiviert Transparent Hugepages-Defragmentierung, um Mikro-Stutter zu verhindern
+usage.server_heavy.3.name|3) Hochverkehrs-Web/App-Server
+usage.server_heavy.3.desc|Massive Somaxconn-Warteschlangen, erweiterter lokaler Portbereich
+usage.server_heavy.4.name|4) Big Data / Analysen
+usage.server_heavy.4.desc|Vorab zugewiesene massive Heap-Maps, hohe Thread-Anzahl-Limits
+usage.vm_guest.1.name|1) Allzweck / Testen
+usage.vm_guest.1.desc|Saubere minimale VM-Parameter
+usage.vm_guest.2.name|2) CI/CD-Runner / Build-Knoten
+usage.vm_guest.2.desc|Schneller CPU-Scaling-Governor, hohe Netzwerk-Backlogs
+usage.vm_guest.3.name|3) Sandbox-Anwendung
+usage.vm_guest.3.desc|Minimierter Dateisystem-Cache-Druck
+usage.vm_guest.4.name|4) Desktop / GUI-Nutzung in VM
+usage.vm_guest.4.desc|Verbesserte Display-Responsivität
+
+# Page 3: Policies
+ui.policies_title|Erweiterte Systemrichtlinien
+ui.tab_system_policies|Systemrichtlinien
+ui.tab_logs|Protokollverwaltung
+ui.tab_misc|Sonstige Optimierungen
+ui.help_title|Parametererklärung
+ui.help_desc|Fahren Sie mit der Maus über eine Einstellung oder einen Parameter, um hier seine detaillierte Beschreibung und Kernel-Namen anzuzeigen.
+
+# Page 4: Review
+ui.review_title|Optimierungsparameter überprüfen
+ui.review_desc|Unten steht die Liste der Parameter, die geändert werden. Sie können sie vor der Anwendung überprüfen.
+ui.review_hdr_param|Parameter
+ui.review_hdr_val|Empfohlener Wert
+
+# Page 5: Apply & Execution Status
+ui.apply_title|Leistungsoptimierungen anwenden
+ui.apply_status_starting|Ausführung wird gestartet...
+ui.apply_status_running|Optimierungen werden angewendet, bitte warten...
+ui.apply_status_restoring|Originalkonfigurationen werden wiederhergestellt, bitte warten...
+ui.apply_status_success|Optimierungen erfolgreich angewendet!
+ui.apply_status_success_partial|Einige Parameter konnten nicht angewendet werden. Überprüfen Sie das Ausführungsprotokoll für Details.
+ui.apply_status_success_restore|Wiederherstellung erfolgreich abgeschlossen!
+ui.apply_status_failed|Optimierungsausführung fehlgeschlagen!
+ui.apply_status_failed_restore|Wiederherstellungsausführung fehlgeschlagen!
+
+# About Dialog Details
+ui.about_version_tde|v%1 - für Trinity DE
+ui.about_version_static|v%1 - statisches tqt3
+ui.about_by|von Seb3773
+
+# State Status & Checkbox Values
+Enabled|Aktiviert
+Disabled|Deaktiviert
+Local-Only|Nur lokal
+Disable Completely|Vollständig deaktivieren
+Keep Enabled|Aktiviert lassen
+Not Installed|Nicht installiert
+Unsupported|Nicht unterstützt
+
+# Sysfs Command Label Keys
+label.EEVDF Scheduler base slice time|EEVDF-Scheduler-Basis-Slice-Zeit
+label.Transparent Huge Pages (THP)|Transparente Huge Pages (THP)
+label.THP Defragmentation policy|THP-Defragmentierungsrichtlinie
+label.Khugepaged daemon defrag sleep cycle|Khugepaged-Daemon-Defragmentation-Schlafzyklus
+label.ZRAM Compression Algorithm (zstd)|ZRAM-Komprimierungsalgorithmus (zstd)
+label.ZRAM CPU Compression Streams scaling|ZRAM-CPU-Komprimierungs-Stream-Skalierung
+label.Block devices I/O Read-Ahead Buffer size|Blockgeräte-I/O-Read-Ahead-Puffergröße
+label.Block devices maximum I/O request size|Maximale I/O-Anforderungsgröße von Blockgeräten
+label.Disable I/O Merges for NVMe drives|I/O-Merges für NVMe-Laufwerke deaktivieren
+label.Disable disk entropy accumulation (reduces latency)|Festplatten-Entropie-Akkumulation deaktivieren (reduziert Latenz)
+label.CPU Scaling Governor|CPU-Scaling-Governor
+label.CPU Energy Performance Preference (EPP)|CPU-Energie-Leistungs-Präferenz (EPP)
+label.Enable AMD P-State Active Mode|AMD P-State-Aktivmodus aktivieren
+label.Force PCIe ASPM to maximum performance|PCIe ASPM auf maximale Leistung erzwingen
+label.Nvidia GPU Persistence Mode (keeps GPU awake)|Nvidia-GPU-Persistenz-Modus (hält GPU wach)
+label.Kernel Samepage Merging (KSM) for virtualization|Kernel-Samepage-Merging (KSM) für Virtualisierung
+label.Network Interface Transmit Queue Length (txqueuelen)|Netzwerkschnittstellen-Übertragungswarteschlangenlänge (txqueuelen)
+label.Ethtool Ring Buffer optimization (reduces packet drops)|Ethtool-Ringpuffer-Optimierung (reduziert Paketverluste)
+label.TCP Segmentation Offload (TSO/GSO/GRO)|TCP-Segmentierung-Offload (TSO/GSO/GRO)
+label.Receive Packet Steering (RPS) multicore mapping|Empfangspaket-Steering (RPS) Multicore-Mapping
+label.tcp_bbr|tcp_bbr
+label.sch_fq|sch_fq
+ui.no_modules_warning|Keine benutzerdefinierten Kernel-Module konfiguriert.
+
+Aktivieren Sie 'Enable Experimental Tweaks' im vorherigen Schritt
+um Hochleistungs-Module (BBR, FQ) zu aktivieren.
+label.Enable Experimental Tweaks|Experimentelle Tweaks aktivieren
+label.Disable CPU C-States (Sleep states)|CPU-C-States (Ruhezustände) deaktivieren
+label.disable_journald|Systemd-Journald-Protokolle deaktivieren
+label.disable_rsyslog|Syslog- und Kernel-Protokolle (rsyslog) deaktivieren
+label.disable_xorg|Xorg- und TDM-Anzeigeprotokolle deaktivieren
+label.disable_boot|Boot- und Dienstprotokolle deaktivieren
+label.disable_pam|Anmelde- und E-Mail-Benachrichtigungsprotokolle deaktivieren
+label.disable_coredumps|Core Dumps deaktivieren
+label.disable_modemmanager|ModemManager-Dienst deaktivieren
+label.disable_nm_wait|NetworkManager-wait-online-Dienst deaktivieren
+label.disable_smbd|Samba-smbd-Dienst deaktivieren
+label.disable_nmbd|Samba-nmbd-Dienst deaktivieren
+label.disable_serial_getty|Serial-getty-Dienst deaktivieren
+label.disable_colord|Colord-Dienst deaktivieren
+label.disable_smartd|Smartd-Dienst deaktivieren
+label.disable_usb_legacy|Legacy-usbmouse/usbkbd-Module deaktivieren (zugunsten von hid)
+label.disable_pcspkr|PC-Lautsprecher-Modul deaktivieren
+label.disable_bluetooth|Bluetooth-Dienst deaktivieren
+label.disable_print|Druckdienste (CUPS/Avahi) deaktivieren
+label.disable_apparmor|AppArmor deaktivieren
+label.disable_ufw|UFW-Firewall deaktivieren
+label.disable_bluez_cups|Bluez-cups-Druck-Backend deaktivieren
+ui.help_desc_policy|Fahren Sie mit der Maus über eine Richtlinie oder Protokoll-Schalter, um ihren detaillierten Optimierungszweck zu lesen.
+
+# --- Parameter and command explanations dictionary ---
+vm.swappiness|Steuert die Kernel-Präferenz für das Auslagern anonymer Speicher vs Caching von Dateien. Niedrigere Werte reduzieren Swapping und Latenz, höhere Werte erhöhen den Durchsatz unter Speicherdruck.
+vm.vfs_cache_pressure|Steuert die Tendenz des Kernels, Verzeichnis- und Inode-Objekte aus dem Cache zurückzuholen. Niedrigere Werte halten Dateisystem-Metadaten im Cache und verbessern die Reaktionsfähigkeit für wiederholte Dateioperationen.
+vm.dirty_background_ratio|Prozentsatz des Systemspeichers, der mit dirty (nicht geschriebenen) Seiten gefüllt werden kann, bevor der Hintergrund-Writeback-Daemon mit dem Schreiben auf Festplatte beginnt.
+vm.dirty_ratio|Prozentsatz des Systemspeichers, der mit dirty Seiten gefüllt werden kann, bevor ein aktiver Prozess gezwungen wird, zu blockieren und dirty Daten auf Festplatte zu schreiben.
+vm.dirty_background_bytes|Anzahl dirty Bytes, bei denen der Hintergrund-Writeback-Daemon mit dem Schreiben von Daten beginnt. (Gegenseitig ausschließend mit dirty_background_ratio).
+vm.dirty_bytes|Anzahl dirty Bytes, bei denen aktive Prozesse gezwungen sind, zu blockieren und Daten zu schreiben. (Gegenseitig ausschließend mit dirty_ratio).
+vm.dirty_expire_centisecs|Definiert, wie lange dirty Daten im Speicher verbleiben können, bevor sie als alt genug betrachtet werden, um zurück auf Festplatte geschrieben zu werden (in Hundertstelsekunden).
+vm.dirty_writeback_centisecs|Definiert das Intervall, in dem der Hintergrund-Writeback-Daemon ausgeführt wird, um nach dirty Seiten zu suchen, die auf Festplatte geschrieben werden sollen (in Hundertstelsekunden).
+vm.max_map_count|Maximale Anzahl von Speicherabbildungsbereichen, die ein Prozess haben kann. Entscheidend für schwere Anwendungen (Compiler, Datenbanken, AAA-Spiele über Proton), um Out-of-Memory-Abstürze zu verhindern.
+vm.compaction_proactiveness|Bestimmt, wie proaktiv der Kernel Speicher komprimiert, um zusammenhängende freie Seiten zu erstellen. Höhere Werte halten Huge Pages verfügbar, können aber CPU-Overhead im Hintergrund erhöhen.
+vm.watermark_boost_factor|Steuert die Aggressivität des Speicher-Wiederherstellungs-Boosts, wenn Fragmentation erkannt wird. Deaktivieren oder Senken reduziert Mikro-Stutter unter hohem RAM-Verbrauch.
+vm.watermark_scale_factor|Definiert die Schrittgröße der freien Speicher-Wasserzeichen. Erhöhen lässt Speicher-Wiederherstellung früher auslösen und vermeidet direkte Zuweisungs-Latenzspitzen.
+vm.zone_reclaim_mode|Steuert die Wiederverwendung lokalen Knotenspeichers in NUMA-Systemen. Deaktivieren ermöglicht Seitenzuweisungen von anderen NUMA-Knoten und vermeidet aggressive lokale Cache-Eviction.
+vm.page-cluster|Steuert die Anzahl der Seiten, die in einem einzigen Versuch aus Swap gelesen werden. Niedrigere Werte (wie 0) reduzieren Latenz für SSD/NVME, höhere Werte sind für langsame mechanische HDD optimiert.
+vm.min_free_kbytes|Mindestmenge an freiem Speicher (in KB), die der Kernel erhält, um Deadlock während Speicher-Wiederherstellung zu vermeiden.
+vm.dirtytime_expire_seconds|Zeit in Sekunden, nach der zwischengespeicherte dirty Metadaten/Zeiten mit Festplatte synchronisiert werden müssen.
+vm.extfrag_threshold|Schwellenwert, der angibt, wann der Kernel mit der Speicherkomprimierung beginnen sollte, anstatt Seiten aufgrund externer Fragmentierung zurückzuholen.
+vm.stat_interval|Frequenz (in Sekunden), mit der der Kernel virtuelle Speicherstatistiken aktualisiert, und balanciert Leistungsoverhead vs Genauigkeit.
+vm.overcommit_memory|Definiert die Overcommit-Speicherpolitik des Kernels. Modus 1 erlaubt alle Zuweisungen, während Modus 2 ein striktes Limit basierend auf Swap und RAM erzwingt.
+vm.overcommit_ratio|Prozentsatz physischer RAM, der zur Berechnung des strikten Speicherzuweisungs-Limits unter Overcommit-Modus 2 verwendet wird.
+vm.nr_hugepages|Anzahl vorab zugewiesener persistenter Huge Pages (normalerweise 2MB), die im RAM für Virtualisierung oder Datenbankbeschleunigung zugewiesen werden.
+kernel.sched_child_runs_first|Sagt dem Scheduler, dass er Kindprozesse zuerst nach Fork ausführen soll. Nützlich für Shells und interaktive GUIs zur Latenzreduzierung.
+kernel.sched_autogroup_enabled|Gruppiert Aufgaben nach TTY-Sitzung, um Kompilierungs/Build-Aufgaben automatisch von Desktop-GUI-Aufgaben zu isolieren und die Desktop-Schnittstelle butterweich zu halten.
+kernel.sched_cfs_bandwidth_slice_us|Setzt die Quantengröße für CFS-CPU-Quota-Limits. Niedrigere Werte reduzieren Container-Latenz, höhere Werte verbessern Durchsatz.
+kernel.sched_latency_ns|Scheduler-Periode zum Ausführen aller Aufgaben. Niedrigere Werte reduzieren Latenz für Desktop/Audio-Aufgaben, höhere Werte verbessern Server/Durchsatz-Effizienz.
+kernel.sched_migration_cost_ns|Zeit, die der Scheduler eine Aufgabe als 'Cache hot' betrachtet, bevor sie zu einem anderen CPU-Kern migriert wird. Verhindert Ping-Pong-Aufgaben und Cache-Thrashing.
+kernel.sched_min_granularity_ns|Minimale Dauer, die eine Aufgabe garantiert auf CPU ausgeführt wird, bevor sie pre-empted wird. Niedrigere Werte verbessern Reaktionsfähigkeit unter Konkurrenz.
+kernel.sched_wakeup_granularity_ns|Steuert, wie leicht aufwachende Aufgaben derzeit ausgeführte Aufgaben pre-empten können. Niedrigere Werte verbessern Aufwach-Latenz, können aber Kontextwechsel-Overhead erhöhen.
+kernel.numa_balancing|Aktiviert oder deaktiviert automatische Migration von Aufgaben und Speicherseiten zwischen NUMA-Knoten. Deaktivieren entfernt Hintergrund-Balance-Overhead in Single-Socket-Konfigurationen.
+kernel.sysrq|Steuert, welche Operationen über SysRq-Tastensequenzen ausgelöst werden können. Wert 1 aktiviert alle Funktionen zur Wiederherstellung, niedrigere Werte beschränken sie aus Sicherheitsgründen.
+kernel.nmi_watchdog|Aktiviert den NMI-Watchdog zur Erkennung von Hard-Locks. Deaktivieren reduziert Energieverbrauch und spart Hardware-Timer-Interrupts.
+kernel.panic|Anzahl Sekunden, die der Kernel nach einem Panic wartet, bevor automatisch neu gestartet wird. Wert 0 deaktiviert automatischen Neustart und zwingt das System zum Anhalten für Debug.
+kernel.panic_on_oops|Bestimmt, ob ein Kernel-Oops (Minor-Crash) sofort einen Panic (Neustart) auslöst. Empfohlen für Server, um unkontrollierte beschädigte Zustände zu vermeiden.
+fs.aio-max-nr|Maximale Anzahl gleichzeitiger asynchroner I/O-Operationen, die systemweit erlaubt sind. Entscheidend für Datenbanken und Hochleistungs-I/O-Anwendungen.
+kernel.timer_migration|Ermöglicht dem Scheduler die Migration von Timern zwischen CPU-Kernen, um Energie auf inaktiven Kernen zu sparen.
+kernel.core_uses_pid|Fügt die Prozess-ID (PID) zu Core-Dump-Dateinamen hinzu und erleichtert das Debuggen mehrerer abgestürzter Prozesse.
+kernel.sched_nr_migrate|Steuert die Anzahl der Aufgaben, die zwischen CPUs in einer einzelnen Scheduler-Ausführung migriert werden, um Overhead und Reaktionsfähigkeit auszugleichen.
+kernel.shmmax|Maximale Größe eines einzelnen Shared-Memory-Segments (in Bytes), die erlaubt ist.
+kernel.shmall|Maximale Gesamtzahl von Shared-Memory-Seiten, die systemweit erlaubt sind.
+kernel.msgmax|Maximale Größe (in Bytes) einer einzelnen Nachricht in einer System V-Nachrichtenwarteschlange.
+kernel.msgmnb|Maximale Größe (in Bytes) einer System V-Nachrichtenwarteschlange.
+net.core.somaxconn|Maximale Backlog-Warteschlangengröße für lauschende TCP-Sockets. Essentiell zu erhöhen für Hochkonkurrenz-Server, um Verbindungsabbrüche zu verhindern.
+net.core.netdev_max_backlog|Maximale Anzahl von Paketen in der Netzwerk-Eingabewarteschlange, wenn CPU Pakete schneller empfängt als der Schnittstellentreiber sie verarbeiten kann.
+net.core.rmem_max|Maximale Socket-Empfangspuffergröße (in Bytes). Entscheidend für Hochbandbreitennetze zur Aufrechterhaltung maximalen Durchsatzes.
+net.core.wmem_max|Maximale Socket-Sendepuffergröße (in Bytes). Entscheidend für Hochbandbreitennetze zur Aufrechterhaltung maximalen Durchsatzes.
+net.core.rmem_default|Standard-Empfangspuffergröße für Sockets (in Bytes).
+net.core.wmem_default|Standard-Sendepuffergröße für Sockets (in Bytes).
+net.core.optmem_max|Maximale Hilfspuffergröße, die pro Socket für Steuerdaten (Hilfs-Header) zugewiesen wird.
+net.ipv4.tcp_rmem|Minimale, Standard- und maximale Empfangspuffergrößen für TCP-Sockets. Das System auto-tuned Puffergrößen zwischen diesen Limits basierend auf Speicherdruck.
+net.ipv4.tcp_wmem|Minimale, Standard- und maximale Sendepuffergrößen für TCP-Sockets. Das System auto-tuned Puffergrößen zwischen diesen Limits basierend auf Speicherdruck.
+net.ipv4.tcp_max_syn_backlog|Maximale Anzahl von wartenden SYN-Anforderungen. Hilft, SYN-Flood-Angriffe zu widerstehen und große Bursts neuer eingehender Verbindungen zu bewältigen.
+net.ipv4.tcp_slow_start_after_idle|Bestimmt, ob das TCP-Congestion-Fenster nach Inaktivität der Verbindung auf den Anfangszustand zurückgesetzt wird. Deaktivieren erhält hohe Geschwindigkeit für Verkehrsbursts.
+net.ipv4.tcp_tw_reuse|Ermöglicht dem Kernel, TIME_WAIT-Sockets sicher für neue Verbindungen zu recyceln. Extrem vorteilhaft für Hochkonkurrenz-Server.
+net.ipv4.tcp_fin_timeout|Wartezeit für ein FIN-Paket vor dem Schließen eines Sockets. Reduzieren gibt tote Sockets schneller frei und spart Systemspeicher.
+net.ipv4.tcp_keepalive_time|Wie lange eine TCP-Verbindung inaktiv sein muss, bevor Keepalive-Sonden gesendet werden.
+net.ipv4.tcp_keepalive_intvl|Intervall zwischen einzelnen Keepalive-Sonden.
+net.ipv4.tcp_keepalive_probes|Maximale Anzahl von Keepalive-Sonden, die gesendet werden, bevor die Verbindung aufgegeben wird.
+net.ipv4.tcp_fastopen|Aktiviert TCP Fast Open und ermöglicht Datenaustausch während des initialen Handshakes, reduziert Verbindungs-Etablierungs-Latenz.
+net.ipv4.tcp_congestion_control|Wählt den TCP-Congestion-Control-Algorithmus. BBR wird für Hochlatenz-WAN-Links empfohlen, cubic/reno für allgemeine Nutzung.
+net.ipv4.tcp_notsent_lowat|Begrenzt nicht gesendete TCP-Daten in den Warteschlangen. Minimiert Bufferbloat und Latenz auf lokalen Sockets.
+net.ipv4.tcp_ecn|Aktiviert Explicit Congestion Notification (ECN) zur Milderung von Paketverlust durch Anforderung von Routers zum Drosseln statt Paket-Drop.
+net.ipv4.tcp_sack|Aktiviert Selective Acknowledgment (SACK), ermöglicht dem Empfänger die Bestätigung von außer-Reihenfolge-Paketen und vermeidet redundante Retransmissionen.
+net.ipv4.tcp_dsack|Aktiviert Duplicate SACK (DSACK), um dem Absender mitzuteilen, ob ein Paket unnötigerweise retransmitiert wurde, und verbessert Congestion-Control-Genauigkeit.
+net.ipv4.tcp_fack|Aktiviert Forward Acknowledgment (FACK), um unnötige Retransmissionen zu reduzieren, wenn mehrere Pakete in einem Flug verloren gehen.
+net.ipv4.tcp_low_latency|Sagt dem TCP-Stack, niedrige Latenz über maximalen Durchsatz zu priorisieren. Empfohlen für wettbewerbsfähiges Gaming und Echtzeitkommunikation.
+net.ipv4.tcp_autocorking|Aktiviert automatisches Coalescing kleiner Schreibungen in einzelne Pakete. Deaktivieren reduziert Latenz für kleine, sofortige Paketlieferungen.
+net.ipv4.ip_local_port_range|Portbereich, der für ausgehende Client-Verbindungen verwendet wird. Erweitern verhindert Port-Erschöpfung auf Hochverkehrs-Servern.
+net.ipv4.tcp_timestamps|Aktiviert TCP-Timestamps zur Verbesserung der Round-Trip-Time-Schätzung und Schutz vor gewrappten Sequenznummern.
+net.ipv4.tcp_retries2|Maximale Anzahl von Versuchen, die TCP versucht, ein nicht bestätigtes Paket zu retransmitieren, bevor die Verbindung aufgegeben wird.
+net.ipv4.tcp_syn_retries|Anzahl gesendeter SYN-Pakete vor dem Aufgeben eines ausgehenden TCP-Verbindungsversuchs.
+net.ipv4.tcp_synack_retries|Anzahl gesendeter SYN/ACK-Pakete vor dem Aufgeben eines eingehenden TCP-Verbindungs-Handshakes.
+net.ipv4.tcp_early_retrans|Aktiviert TCP Early Retransmit, um Paketverlust schneller unter kleinen Congestion-Fenster-Größen wiederherzustellen.
+net.ipv4.tcp_mtu_probing|Erkennt automatisch Path-MTU-Größen (Maximum Transmission Unit), wenn ICMP-Black-Holes Paketlieferung blockieren.
+net.ipv4.tcp_syncookies|Aktiviert SYN-Cookies, um das System vor DDoS-SYN-Flood-Angriffen zu schützen, indem Verbindungen ohne Socket-Speicherzuweisung verifiziert werden.
+net.ipv4.tcp_window_scaling|Aktiviert TCP-Window-Scaling zur Unterstützung von Empfangsfenstern größer als 64KB, kritisch für Hochlatenz-WAN-Links.
+net.ipv4.tcp_moderate_rcvbuf|Auto-tuned dynamisch TCP-Empfangsfenster-Puffergrößen, um Netzwerklatenz und -geschwindigkeit anzupassen.
+net.ipv4.tcp_abort_on_overflow|Bricht Verbindungen ab, wenn ein lauschender Dienst zu beschäftigt ist, um neue Verbindungen zu akzeptieren, und gibt Client-Ressourcen sofort frei.
+net.ipv4.tcp_max_tw_buckets|Begrenzt die maximale Anzahl von TIME_WAIT-Sockets, die im Speicher gehalten werden, um Denial-of-Service-Socket-Erschöpfung zu verhindern.
+net.core.netdev_budget|Maximale Anzahl von Paketen, die vom Polling-Treiber in einer einzelnen NAPI-Ausführungsschleife verarbeitet werden.
+net.core.netdev_budget_usecs|Maximale Ausführungszeit, die für Netzwerk-Packet-Polling in Mikrosekunden erlaubt ist.
+net.netfilter.nf_conntrack_max|Maximale Anzahl verfolgter Netzwerkverbindungen in der Netfilter-Zustandstabelle.
+net.netfilter.nf_conntrack_tcp_timeout_established|Zeit in Sekunden, die eine inaktive etablierte TCP-Verbindung in der Verbindungsverfolgungstabelle gehalten wird.
+net.ipv4.tcp_limit_output_bytes|Steuert die maximale Größe nicht gesendeter TCP-Daten, die für die Netzwerkkarte in die Warteschlange gestellt werden, und reduziert lokalen Bufferbloat.
+net.core.default_qdisc|Setzt die Standard-Warteschlangendisziplin (wie fq, cake oder fq_codel) für alle Netzwerkschnittstellen.
+net.ipv6.conf.all.disable_ipv6|Deaktiviert IPv6-Protokollunterstützung auf allen Netzwerkschnittstellen zur Vereinfachung des Routing und Reduzierung der Netzwerk-Angriffsfläche.
+net.ipv6.conf.default.disable_ipv6|Deaktiviert IPv6-Protokollunterstützung auf allen neu erstellten Netzwerkschnittstellen.
+net.ipv6.conf.lo.disable_ipv6|Deaktiviert IPv6-Protokollunterstützung auf der Loopback-Schnittstelle.
+net.ipv6.conf.all.accept_ra|Steuert die Akzeptanz von IPv6-Router-Advertisements. Deaktivieren verhindert automatische Router-Erkennung aus Sicherheitsgründen.
+net.ipv6.conf.default.accept_ra|Standard-Router-Advertisement-Richtlinie für neue Netzwerkschnittstellen.
+net.ipv6.conf.all.autoconf|Aktiviert oder deaktiviert automatische IPv6-Adresskonfiguration mit SLAAC.
+net.ipv6.conf.default.autoconf|Standard-Automatische-IPv6-Konfigurationsrichtlinie für neue Netzwerkschnittstellen.
+net.ipv4.conf.all.rp_filter|Aktiviert Reverse Path Filtering (RPF) zur Verhinderung von IP-Spoofing durch Verifizierung, dass eingehende Pakete auf dem erwarteten Routing-Pfad ankommen.
+net.ipv4.conf.default.rp_filter|Standard-Reverse-Path-Filtering-Einstellung für neue Netzwerkschnittstellen.
+net.ipv4.conf.all.accept_source_route|Erlaubt Source-Routing-Header, die Absender-spezifizierte Routen ermöglichen. Standardmäßig aus Sicherheitsgründen deaktiviert, um Umleitungsangriffe zu blockieren.
+net.ipv4.conf.default.accept_source_route|Standard-Source-Routing-Richtlinie für neue Netzwerkschnittstellen.
+net.ipv4.conf.all.accept_redirects|Erlaubt ICMP-Redirects. Auf sicheren Systemen deaktiviert, um Angreifer daran zu hindern, Verkehr durch Zwischensysteme zu leiten.
+net.ipv4.conf.default.accept_redirects|Standard-ICMP-Redirect-Richtlinie für neue Netzwerkschnittstellen.
+net.ipv4.conf.all.secure_redirects|Beschränkt ICMP-Redirect-Akzeptanz nur auf bekannte Gateways. Aus Sicherheitsgründen deaktiviert.
+net.ipv4.conf.default.secure_redirects|Standard-Secure-Redirect-Richtlinie für neue Netzwerkschnittstellen.
+net.ipv4.conf.all.send_redirects|Aktiviert das Senden von ICMP-Redirects. Empfohlen, auf Nicht-Router-Hosts zu deaktivieren, um die Bekanntmachung von Routenänderungen zu vermeiden.
+net.ipv4.conf.default.send_redirects|Standard-ICMP-Redirect-Send-Richtlinie für neue Netzwerkschnittstellen.
+net.ipv4.conf.all.log_martians|Protokolliert Pakete mit unmöglichen (spoofed) Quell-IP-Adressen an Syslog.
+net.ipv4.conf.default.log_martians|Standard-Protokollierungsrichtlinie für spoofed-Pakete für neue Netzwerkschnittstellen.
+kernel.kptr_restrict|Beschränkt den Zugriff auf Kernel-Symboladressen in /proc/kallsyms. Stufe 2 verbirgt sie vollständig, um Exploits zu verhindern, Kernel-Funktionen zu lokalisieren.
+kernel.dmesg_restrict|Beschränkt den Zugriff auf den System-Log-Puffer (dmesg). Empfohlen zu aktivieren, um nicht privilegierte Benutzer am Lesen von Kernel-Debug-Ausgaben zu hindern.
+kernel.perf_event_paranoid|Beschränkt den Zugriff auf Leistungsereignisse. Höhere Werte verhindern, dass Nicht-Root-Benutzer CPU-Leistungsindikatoren lesen.
+kernel.yama.ptrace_scope|Beschränkt Prozessinspektion/ptrace. Empfohlen, auf Eltern-Kind-Beziehungen zu beschränken, um Memory-Snooping zu blockieren.
+fs.protected_hardlinks|Blockiert die Erstellung von Hardlinks zu Dateien, die der Benutzer nicht besitzt, und verhindert Symlink/Hardlink-Race-Schwachstellen.
+fs.protected_symlinks|Blockiert das Folgen von Symlinks in world-writable-Verzeichnissen, die anderen Benutzern gehören, und verhindert Datei-Ersatz-Angriffe.
+fs.protected_fifos|Blockiert das Öffnen von FIFOs in world-writable-Verzeichnissen, die nicht dem aktiven Benutzer gehören.
+fs.protected_regular|Blockiert das Öffnen regulärer Dateien in für alle offenen Verzeichnissen, die nicht dem aktuellen Benutzer gehören.
+fs.file-max|Maximale Anzahl von Dateideskriptoren, die der Kernel zuweisen kann. Entscheidend für massive Container-Hosts oder aktive Dateiserver.
+fs.inotify.max_user_watches|Maximale Anzahl von Verzeichnispfaden, die von inotify überwacht werden. Wesentlich zu erhöhen für aktive Code-Entwicklungsarbeitsbereiche oder IDEs.
+fs.inotify.max_user_instances|Maximale Anzahl aktiver inotify-Instanzen, die ein Benutzer erstellen kann.
+kernel.pid_max|Maximale Prozess-ID-Nummer. Erhöhen verhindert PID-Erschöpfung auf Servern, die Tausende paralleler Threads ausführen.
+vm.mmap_min_addr|Minimale virtuelle Adresse, die für User-Space-Speicherzuweisungen erlaubt ist, und verhindert Null-Zeiger-Dereferenzierungs-Sicherheits-Exploits.
+kernel.randomize_va_space|Aktiviert Address Space Layout Randomization (ASLR), um Speicher-Exploits zu verhindern, Zieladressen vorherzusagen.
+kernel.unprivileged_bpf_disabled|Beschränkt nicht privilegierte Benutzer von der Verwendung des eBPF-Compilers und verhindert Side-Channel- und Kernel-Exploits.
+net.core.bpf_jit_enable|Aktiviert den Just-In-Time (JIT)-Compiler für eBPF-Bytecode zur Ausführung von Netzwerkfiltern mit Hardware-Geschwindigkeit.
+net.core.bpf_jit_harden|Härtet den eBPF-JIT-Compiler durch Aktivierung von Constant Blinding zum Schutz gegen JIT-Spraying-Exploits.
+kernel.kexec_load_disabled|Deaktiviert den kexec-Systemaufruf, um das Laden eines neuen Kernels zur Laufzeit zu verhindern und blockiert Rootkits vom Umgehen von Secure-Boot-Ketten.
+fs.suid_dumpable|Steuert Core Dumps für setuid-Executables, um das Leaken sensibler Anmeldeinformationen in Speicher-Dumps zu verhindern.
+net.ipv4.tcp_rfc1337|Schützt vor TIME_WAIT-Assassination-Gefahren (vorzeitige Socket-Resets) gemäß RFC 1337.
+net.ipv4.icmp_echo_ignore_broadcasts|Sagt dem System, ICMP-Echo-Anforderungen (Ping) an Broadcast-Adressen zu ignorieren und verhindert Smurf-DDoS-Amplifikations-Angriffe.
+net.ipv4.icmp_ignore_bogus_error_responses|Verhindert das Protokollieren falscher ICMP-Fehlerantworten, um Syslog-Füllung mit Netzwerkrauschen zu vermeiden.
+net.ipv4.conf.all.arp_ignore|Steuert, wie auf ARP-Anforderungen geantwortet wird, wenn sie auf verschiedenen Subnetzen oder Schnittstellen empfangen werden.
+net.ipv4.conf.all.arp_announce|Steuert die Einschränkungsebene für die Ankündigung lokaler IP-Adressen in ARP-Anforderungen auf den Schnittstellen.
+EEVDF Scheduler base slice time|Setzt die Basis-Slice-Zeit der CFS-Ausführungswarteschlange. Senken (z.B. auf 1ms) verbessert Latenz und Desktop-Responsivität unter CPU-Last.
+Transparent Huge Pages (THP)|Ermöglicht dem Kernel, Standard-4KB-Seiten zu 2MB-Huge-Pages zu aggregieren, reduziert TLB-Cache-Misses. Aktivieren verbessert Kompilierung und VM-Geschwindigkeit, kann aber Latenzspitzen in Datenbanken verursachen.
+THP Defragmentation policy|Steuert, wie aggressiv der Kernel Speicher im Hintergrund defragmentiert, um Huge Pages zu bauen. 'madvise' defragmentiert nur auf Anforderung und vermeidet systemweite Latenzspitzen.
+Khugepaged daemon defrag sleep cycle|Dauer des Schlafzyklus des Hintergrund-Defragmenters khugepaged zwischen Scans. Erhöhen reduziert CPU-Wakeups im Hintergrund.
+ZRAM Compression Algorithm (zstd)|Wählt den Komprimierungsalgorithmus für ZRAM-Swap-Speicher. Zstd bietet das optimale Gleichgewicht aus hohem Komprimierungsverhältnis und schneller Dekomprimierungsgeschwindigkeit.
+ZRAM CPU Compression Streams scaling|Setzt die Anzahl paralleler CPU-Komprimierungs-Threads, die pro ZRAM-Gerät erlaubt sind. Skalieren auf die CPU-Kern-Anzahl maximiert Komprimierungsgeschwindigkeit.
+Block devices I/O Read-Ahead Buffer size|Setzt die Datenmenge, die das System vorab bei sequenziellen Leseanforderungen liest. Höhere Werte sind am besten für HDD, niedrigere Werte (z.B. 128KB) sind optimal für niedriglatente SSD/NVME.
+Block devices maximum I/O request size|Maximale I/O-Anforderungsgröße, die an Blockgeräte gesendet wird. Ein Wert von 256KB-512KB ist optimal für niedriglatente NVMe-Laufwerke.
+Disable I/O Merges for NVMe drives|Deaktiviert I/O-Merges. Da NVMe-Geräte extrem schnell sind und massive Hardware-Warteschlangen unterstützen, überspringt OS-Merge CPU-Overhead und Latenz.
+Disable disk entropy accumulation (reduces latency)|Deaktiviert Festplatten-Entropie-Beitrag. Dies stoppt Festplatten-I/O-Interrupts vom Seeding des Random-Generators und reduziert Overhead bei häufigen SSD-Schreibvorgängen.
+CPU Scaling Governor|Setzt den CPU-Governor. 'performance' erzwingt CPU-Kerne, um bei maximaler Frequenz zu laufen, um Latenz zu minimieren, während 'powersave/schedutil' Energieverbrauch ausgleicht.
+CPU Energy Performance Preference (EPP)|Sagt der Hardware, maximale Leistung, Energiesparung oder ein Gleichgewicht beider auf CPU-Firmware-Ebene zu priorisieren.
+Enable AMD P-State Active Mode|Aktiviert den modernen AMD P-State-Treiber im aktiven Modus und ermöglicht autonomes CPU-Frequenz-Scaling, das von der Hardware selbst für optimale Effizienz geleitet wird.
+Force PCIe ASPM to maximum performance|Erzwingt PCIe Active State Power Management auf Leistung, hält Kanälen vollständig aktiv, eliminiert Wake-Up-Latenz und maximiert Transfer-Durchsatz.
+Nvidia GPU Persistence Mode (keeps GPU awake)|Aktiviert den Nvidia-GPU-Persistenz-Daemon. Hält den Nvidia-Treiber geladen und die GPU in einem aktiven Niedrigleistungsstatus und vermeidet 2-Sekunden-Wake-Up-Verzögerungen bei CUDA-Aufgaben.
+Kernel Samepage Merging (KSM) for virtualization|Ermöglicht dem Kernel, identische Speicherseiten zwischen virtuellen Maschinen zu deduplizieren. Spart signifikant RAM, führt aber geringfügigen CPU-Overhead im Hintergrund ein.
+Network Interface Transmit Queue Length (txqueuelen)|Warteschlangengröße für ausgehende Netzwerkpakete. Senken reduziert Netzwerk-Bufferbloat auf langsamen Links; Erhöhen verhindert Paketverluste auf 10G+-Servern.
+Ethtool Ring Buffer optimization (reduces packet drops)|Maximiert RX/TX-Ringpuffer der Netzwerkkarte, um Paketverluste während plötzlicher Verkehrsspitzen oder Hochdurchsatz-Netzwerkbetrieb zu verhindern.
+TCP Segmentation Offload (TSO/GSO/GRO)|Offload TCP-Segment-Montage und -Fragmentierung direkt zur Netzwerkkarten-Hardware und reduziert drastisch Host-CPU-Overhead unter hoher Netzwerklast.
+Receive Packet Steering (RPS) multicore mapping|Verteilt Netzwerkpaket-Verarbeitung über mehrere CPU-Kerne und verhindert Single-Core-CPU-Engpässe auf Hoch-pps-Netzwerkschnittstellen.
+tcp_bbr|Bottleneck Bandwidth and RTT (BBR) Congestion-Control-Modul. Verbessert drastisch Netzwerkdurchsatz und Latenz auf Hochverlust-WAN-Links.
+sch_fq|Fair Queueing-Traffic-Control-Modul. Priorisiert Pakete pro Socket-Verbindung und Pacing zur Reduzierung von Bufferbloat.
+Enable Experimental Tweaks|Aktiviert erweiterte Limit-Bypass, aggressive Kernel-Writebacks, BBR-TCP-Congestion-Control und deaktiviert Observations-Logging für maximale Geschwindigkeit.
+Disable CPU C-States (Sleep states)|Verhindert, dass CPU-Kerne in tiefe Schlafzustände (C1-C6) eintreten. Dies garantiert absolute Null-Wake-Up-Latenz, erhöht aber massiv Energieverbrauch und Wärme.
+disable_journald|Stoppt das Schreiben von systemd-Journal-Protokollen auf Festplatte oder im Speicher, reduziert drastisch kontinuierliche Festplatten-Schreiboperationen und CPU-Logging-Overhead.
+disable_rsyslog|Stoppt und maskiert rsyslog-Dienst/Socket, deaktiviert syslog für dbus-Dienst und deaktiviert Syslog-Kernel-Nachrichten, um CPU-Zyklen und Festplatten-Schreibvorgänge zu sparen.
+disable_xorg|Deaktiviert das Protokollieren von Grafik-Display-Fehlern, Trinity-TDM-Sitzungsprotokollierung und leitet .xsession-errors-Fehler an /dev/null um, um aktive Festplatten-Schreibvorgänge zu reduzieren.
+disable_boot|Deaktiviert das Protokollieren von System-Boot-Nachrichten, CUPS-Druck-Daemon und Preload-Utility-Protokolle und bietet schnellere, stille Starts mit weniger I/O.
+disable_pam|Stoppt die Aufzeichnung von Benutzer-Anmeldesitzungen, PAM-Lastlog-, wtmp-Protokolle und E-Mail-Benachrichtigungen, um Festplattenaktivität auf Multi-User-Systemen signifikant zu reduzieren.
+disable_coredumps|Stoppt Kernel-Core-Dumps während Abstürzen. Spart Festplattenplatz und I/O-Overhead bei Systemfehlern.
+disable_modemmanager|Deaktiviert ModemManager-Dienst. Verhindert Hintergrund-Scannen von seriellen Ports für Modems und beschleunigt Boot.
+disable_nm_wait|Deaktiviert NetworkManager-wait-online-Dienst. Beschleunigt Start, indem Boot nicht blockiert wird, während auf Netzwerkverbindung gewartet wird.
+disable_smbd|Deaktiviert Samba-Dateifreigabe-Daemon (smbd). Gibt Speicher frei, wenn Sie keine Ordner in Ihrem lokalen Netzwerk freigeben.
+disable_nmbd|Deaktiviert NetBIOS-Namenserver-Daemon (nmbd). Reduziert Hintergrund-Netzwerk-Listening-Dienste.
+disable_serial_getty|Deaktiviert serielle Terminal-Login-Dienst auf ttyS0. Reduziert Hintergrund-Terminal-Listening-Prozesse.
+disable_colord|Deaktiviert Colord-Farbbewirtschaftungs-Daemon. Gibt Systemspeicher auf Laptops und Servern frei.
+disable_smartd|Deaktiviert S.M.A.R.T.-Festplattenüberwachungs-Daemon. Reduziert Festplatten-Wakeups und Hintergrund-Checks.
+disable_usb_legacy|Blacklistet Legacy-usbmouse- und usbkbd-Module. Erzwingt einheitliche Verwendung des modernen, optimierten usbhid-Treibers.
+disable_pcspkr|Blacklistet pcspkr-Motherboard-Lautsprecher-Modul. Stummt nervige Hardware-Bips.
+disable_bluetooth|Deaktiviert bluetooth.service. Spart Energie und verbessert Systemsicherheit, wenn Wireless nicht benötigt wird.
+disable_print|Deaktiviert CUPS und Avahi-Netzwerkdruck-Erkennung. Gibt Hintergrundspeicher frei und verhindert Drucker-Netzwerk-Polling.
+disable_apparmor|Deaktiviert AppArmor-Sicherheitsprofilierung. Reduziert Kernel-Ausführungs-Overhead und beschleunigt Prozess-Start.
+disable_ufw|Deaktiviert UFW-Firewall. Empfohlen, wenn Sie bereits einen Netzwerk- oder Hardware-Firewall-Router haben.
+disable_bluez_cups|Deaktiviert Bluetooth-Druck-Backend. Verhindert CUPS-Bluetooth-Geräte-Polling und reduziert System-Wakeups.
+ui.msg_success|Success
+ui.msg_warning|Warning
+ui.msg_error|Error
+ui.msg_question|Confirmation
+ui.msg_hw_scan_error_title|Hardware Scan Error
+ui.msg_hw_scan_error_text|Could not successfully run tuneperf.sh to detect hardware or build parameters.
+ui.msg_restore_confirm_title|Restore Backups
+ui.msg_restore_confirm_text|Are you sure you want to revert all system tuning modifications and restore the original configurations?
+ui.msg_tuning_success_title|Tuning Success
+ui.msg_tuning_success_text|All custom optimization parameters have been applied and persistent rules generated successfully!
+ui.msg_tuning_warning_title|Tuning Warning
+ui.msg_tuning_warning_text|Some parameters failed to apply. Check execution log for details.
+ui.msg_tuning_error_title|Tuning Error
+ui.msg_tuning_error_text|Failed to apply optimization parameters. Check execution log for details.
+ui.msg_restore_success_title|Restore Success
+ui.msg_restore_success_text|Original configurations restored, persistence service disabled, and udev rules removed successfully.
+ui.msg_restore_error_title|Restore Error
+ui.msg_restore_error_text|Failed to restore backup configurations. Check log for details.
