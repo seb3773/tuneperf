@@ -1,6 +1,6 @@
 # TunePerf - Linux System Tuner
 
-![Konqi tuning](konqi_perfs.jpeg
+![Konqi tuning](konqi_perfs.jpeg)
 
 **TunePerf** is a system orchestration and performance tuning Bash script for Linux. 
 
