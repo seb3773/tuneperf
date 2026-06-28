@@ -1,5 +1,7 @@
 # TunePerf - Linux System Tuner
 
+![Konqi tuning](konqi_perfs.jpeg
+
 **TunePerf** is a system orchestration and performance tuning Bash script for Linux. 
 
 Unlike the myriad of copy-pasted scripts found on GitHub (which blindly apply obsolete `sysctl` values) or heavy background daemons, **TunePerf** is designed with surgical precision and prudence: 
@@ -118,3 +120,13 @@ TunePerf includes simple scripts to compile and package the GUI client for relea
 ### Create Archive Tarballs:
 * `./build_tar.sh` — Packages the dynamic build as a compressed archive (**tuneperfs-gui_1.0_amd64_dynamic.tar.gz**).
 * `./build_static_tar.sh` — Packages the standalone static build as a compressed archive (**tuneperfs-gui_1.0_amd64_static.tar.gz**).
+
+---
+
+## Screenshots
+
+| Page 1: Welcome | Page 2: System Role | Page 3: Usage Profile | Page 4: Policies | Page 5: Parameters Editor |
+| :---: | :---: | :---: | :---: | :---: |
+| <a href="screenshots/screenshot_tuneperf_1.jpg"><img src="screenshots/screenshot_tuneperf_1.jpg" width="150" alt="Welcome"></a> | <a href="screenshots/screenshot_tuneperf_2.jpg"><img src="screenshots/screenshot_tuneperf_2.jpg" width="150" alt="System Role"></a> | <a href="screenshots/screenshot_tuneperf_3.jpg"><img src="screenshots/screenshot_tuneperf_3.jpg" width="150" alt="Usage Profile"></a> | <a href="screenshots/screenshot_tuneperf_4.jpg"><img src="screenshots/screenshot_tuneperf_4.jpg" width="150" alt="Policies"></a> | <a href="screenshots/screenshot_tuneperf_5.jpg"><img src="screenshots/screenshot_tuneperf_5.jpg" width="150" alt="Parameters Editor"></a> |
+| **Page 6: Optimization** | **Execution Log** | **Success Dialog** | **Language Menu** | **About Dialog** |
+| <a href="screenshots/screenshot_tuneperf_6.jpg"><img src="screenshots/screenshot_tuneperf_6.jpg" width="150" alt="Optimization"></a> | <a href="screenshots/screenshot_tuneperf_7.jpg"><img src="screenshots/screenshot_tuneperf_7.jpg" width="150" alt="Execution Log"></a> | <a href="screenshots/screenshot_tuneperf_8.jpg"><img src="screenshots/screenshot_tuneperf_8.jpg" width="150" alt="Success Dialog"></a> | <a href="screenshots/screenshot_tuneperf_9.jpg"><img src="screenshots/screenshot_tuneperf_9.jpg" width="150" alt="Language Menu"></a> | <a href="screenshots/screenshot_tuneperf_10.jpg"><img src="screenshots/screenshot_tuneperf_10.jpg" width="150" alt="About Dialog"></a> |
