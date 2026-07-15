@@ -5,6 +5,7 @@ build-static/
 # Debian package build artifacts and output binaries
 *.deb
 *.tar.gz
+*.AppImage
 tuneperfs-gui_*
 tuneperfs-gui-static_*
 

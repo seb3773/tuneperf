@@ -91,7 +91,7 @@ Section: utils
 Priority: optional
 Architecture: $ARCH
 Maintainer: seb3773
-Depends: libtqt-mt | libtqt3-mt, tdebase-bin | tde-core
+Depends: libtqt-mt | libtqt3-mt | libtqt-mt-trinity | libtqt3-mt-trinity, tdelibs14-trinity | tdelibs-trinity
 Description: Intelligent Linux system optimizer and manager GUI
  TunePerf scans system topology to dynamically generate and apply
  optimized system kernel parameters, scheduler settings, network cache

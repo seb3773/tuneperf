@@ -29,9 +29,10 @@ TunePerf includes a comprehensive graphical desktop client (**tuneperfs-gui**) t
 2. **System Language Auto-Detection**: Automatically detects the system locale (e.g., `fr`, `de`, `es`, `it`, `pl`) at boot and loads the correct translation, falling back to English if the locale is not supported.
 3. **No Root Startup Required**: Runs securely under your normal user session and presents a privilege dialog only when applying optimizations or interacting with the service backend.
 
-### Two GUI Versions Available
+### Three GUI Formats Available
 * **TDE Dynamic Build**: Compiles dynamically against the **Trinity Desktop Environment (TDE)** libraries for native integration on Trinity/TDE desktops.
 * **Standalone Static Build**: Links statically against **TQt3**, compiling into a single executable that runs on any Linux distribution (Debian, Ubuntu, Mint, Fedora, Arch, etc.) without requiring TDE or any manual library setup.
+* **AppImage Release**: Packages the dynamic TDE version with its bundled dependent libraries (`libtdecore`, `libtqt-mt`, etc.) into a single executable AppImage that runs on any non-Trinity Linux system.
 
 ---
 
@@ -120,6 +121,9 @@ TunePerf includes simple scripts to compile and package the GUI client for relea
 ### Create Archive Tarballs:
 * `./build_tar.sh` — Packages the dynamic build as a compressed archive (**tuneperfs-gui_1.0_amd64_dynamic.tar.gz**).
 * `./build_static_tar.sh` — Packages the standalone static build as a compressed archive (**tuneperfs-gui_1.0_amd64_static.tar.gz**).
+
+### Create AppImage:
+* `./build_appimage.sh` — Compiles and builds the self-contained AppImage release (**tuneperfs-gui-x86_64.AppImage**).
 
 ---
 
