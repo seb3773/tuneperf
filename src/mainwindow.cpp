@@ -1361,6 +1361,8 @@ void MainWindow::populateParametersTree()
         lay->addStretch(1);
     };
 
+    buildHibernationWidget(wSwappiness, laySwappiness);
+
     TuneParamList swappinessList = m_runner->swappinessParams();
     popList(wSwappiness, laySwappiness, swappinessList);
     m_runner->setSwappinessParams(swappinessList);
@@ -2273,6 +2275,126 @@ void MainWindow::populateRoles()
     m_lvRoles->setCurrentItem(selectIt);
     
     connect(m_lvRoles, SIGNAL(selectionChanged(TQListViewItem*)), this, SLOT(onRoleChanged(TQListViewItem*)));
+}
+
+void MainWindow::buildHibernationWidget(TQWidget* parent, TQVBoxLayout* layout)
+{
+    TQFrame* box = new TQFrame(parent);
+    box->setFrameStyle(TQFrame::Box | TQFrame::Raised);
+    box->setLineWidth(1);
+    box->setPaletteBackgroundColor(TQColor(40, 40, 45));
+    TQVBoxLayout* l = new TQVBoxLayout(box, 10, 5);
+
+    TQLabel* title = new TQLabel("<font color='#F4F4F5'><b>Hibernation & Physical Swap Readiness</b></font>", box);
+    l->addWidget(title);
+
+    SwapInfo info = m_runner->checkSwapStatus();
+
+    TQString statusText = TQString("<font color='#D4D4D8'><b>RAM:</b> %1 MB | <b>ZRAM:</b> %2 MB | <b>Physical Swap:</b> %3 MB</font><br>")
+        .arg(info.ramMb).arg(info.zramMb).arg(info.physSwapMb);
+
+    TQLabel* lblStatus = new TQLabel(box);
+    l->addWidget(lblStatus);
+
+    TQHBoxLayout* btnLay = new TQHBoxLayout(l);
+    TQPushButton* btnAction = new TQPushButton(box);
+    TQPalette p = btnAction->palette();
+    p.setColor(TQColorGroup::ButtonText, TQColor(255, 255, 255));
+    btnAction->setPalette(p);
+    btnAction->hide();
+    btnLay->addWidget(btnAction);
+    btnLay->addStretch(1);
+
+    bool hasPartition = false;
+    TQString fileSwapPath;
+    for (TQValueList<SwapDeviceInfo>::Iterator it = info.devices.begin(); it != info.devices.end(); ++it) {
+        if ((*it).type == "partition") hasPartition = true;
+        if ((*it).type == "file") fileSwapPath = (*it).name;
+    }
+
+    if (info.physSwapMb >= info.targetSwapMb) {
+        statusText += "<font color='#10B981'><b>Status: Ready for Hibernation</b></font>";
+        btnAction->hide();
+    } else {
+        if (info.physSwapMb == 0) {
+            statusText += "<font color='#EF4444'><b>Status: Hibernation Impossible (No Physical Swap)</b></font>";
+            btnAction->setText("Configure Swap...");
+            btnAction->show();
+            connect(btnAction, SIGNAL(clicked()), this, SLOT(slotConfigureSwap()));
+        } else if (hasPartition) {
+            statusText += "<font color='#F59E0B'><b>Status: Hibernation Risky (Partition Too Small)</b></font>";
+            btnAction->setText("How to fix?");
+            btnAction->show();
+            connect(btnAction, SIGNAL(clicked()), this, SLOT(slotFixPartitionSwap()));
+        } else if (!fileSwapPath.isEmpty()) {
+            statusText += "<font color='#F59E0B'><b>Status: Hibernation Risky (File Too Small)</b></font>";
+            btnAction->setText("Resize Swapfile...");
+            btnAction->show();
+            btnAction->setProperty("swap_path", fileSwapPath);
+            btnAction->setProperty("target_gb", (info.targetSwapMb / 1024) + 1);
+            connect(btnAction, SIGNAL(clicked()), this, SLOT(slotResizeSwap()));
+        }
+    }
+
+    lblStatus->setText(statusText);
+    layout->addWidget(box);
+}
+
+void MainWindow::slotConfigureSwap()
+{
+    SwapInfo info = m_runner->checkSwapStatus();
+    int targetGb = (info.targetSwapMb / 1024) + 1;
+    
+    int ret = TQMessageBox::information(this, "Configure Swap",
+        "No physical swap was detected. Hibernation requires a physical Swap partition or file.\n\n"
+        "TunePerf can automatically create and configure a /swapfile of " + TQString::number(targetGb) + " GB.\n"
+        "It will also update your GRUB configuration (resume_offset) to enable hibernation.\n\n"
+        "Alternatively, you can create a dedicated Swap Partition manually using a tool like GParted.",
+        "Create /swapfile automatically", "I will create a Partition manually", TQString::null, 0, 1);
+        
+    if (ret == 0) {
+        if (m_runner->provisionSwapfile(targetGb)) {
+            TQMessageBox::information(this, "Success", "Swapfile created and configured successfully.\nPlease reboot your system.");
+        } else {
+            TQMessageBox::warning(this, "Error", "Failed to create swapfile. Check permissions or disk space.");
+        }
+    }
+}
+
+void MainWindow::slotResizeSwap()
+{
+    TQPushButton* btn = (TQPushButton*)sender();
+    if (!btn) return;
+    TQString path = btn->property("swap_path").toString();
+    int targetGb = btn->property("target_gb").toInt();
+
+    int ret = TQMessageBox::warning(this, "Resize Swapfile",
+        "Your swapfile (" + path + ") is too small for safe hibernation.\n\n"
+        "TunePerf can resize it to " + TQString::number(targetGb) + " GB automatically.\n"
+        "This will update your GRUB resume_offset. This operation may take some time depending on your disk speed.",
+        "Resize Now", "Cancel", TQString::null, 0, 1);
+        
+    if (ret == 0) {
+        if (m_runner->resizeSwapfile(path, targetGb)) {
+            TQMessageBox::information(this, "Success", "Swapfile resized successfully.\nPlease reboot your system.");
+        } else {
+            TQMessageBox::warning(this, "Error", "Failed to resize swapfile. Check permissions or disk space.");
+        }
+    }
+}
+
+void MainWindow::slotFixPartitionSwap()
+{
+    SwapInfo info = m_runner->checkSwapStatus();
+    int targetGb = (info.targetSwapMb / 1024) + 1;
+
+    TQMessageBox::information(this, "Partition Swap Too Small",
+        "You are using a physical Swap Partition, but it is too small to safely guarantee hibernation.\n\n"
+        "Because resizing partitions automatically is extremely dangerous and can lead to data loss, "
+        "TunePerf cannot do this for you.\n\n"
+        "Recommendation:\n"
+        "Use a live USB with GParted to safely shrink an adjacent partition and expand your swap partition "
+        "to at least the recommended size (" + TQString::number(targetGb) + " GB).");
 }
 
 #include "mainwindow.moc"

@@ -41,6 +41,11 @@ private slots:
     void onApplyFinished(bool success);
     void onRestoreFinished(bool success);
     void onLogMessage(const TQString& msg);
+    
+    // Hibernation actions
+    void slotConfigureSwap();
+    void slotResizeSwap();
+    void slotFixPartitionSwap();
 
     // Profile selections
     void onRoleChanged(TQListViewItem* item);
@@ -63,6 +68,11 @@ private:
     void saveUserCheckedParameters();
     void loadProfileSelection();
     void updateLogToggleLabels();
+    void applyCustomPalette();
+    void loadTranslations();
+
+    void buildHibernationWidget(TQWidget* parent, TQVBoxLayout* layout);
+
     void updateTexts();
     void populateRoles();
 

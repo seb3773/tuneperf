@@ -23,6 +23,21 @@ struct ScriptLine {
     TQString currentValue;
 };
 
+struct SwapDeviceInfo {
+    TQString name;
+    TQString type;
+    int sizeMb;
+};
+
+struct SwapInfo {
+    int ramMb;
+    int targetSwapMb;
+    int physSwapMb;
+    int zramMb;
+    int rootFreeMb;
+    TQValueList<SwapDeviceInfo> devices;
+};
+
 typedef TQValueList<TuneParam> TuneParamList;
 typedef TQValueList<ScriptLine> ScriptLineList;
 
@@ -60,6 +75,11 @@ public:
     // Log values
     TQString getLogValue(const TQString& key) const;
     void setLogValue(const TQString& key, const TQString& val);
+
+    // Swap management
+    SwapInfo checkSwapStatus();
+    bool provisionSwapfile(int sizeGb);
+    bool resizeSwapfile(const TQString& path, int sizeGb);
 
     // Config IO
     bool loadConfigs();

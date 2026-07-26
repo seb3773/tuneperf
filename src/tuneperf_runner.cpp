@@ -707,4 +707,92 @@ void TunePerfRunner::onProcessStderr(const TQByteArray& data)
     }
 }
 
+SwapInfo TunePerfRunner::checkSwapStatus()
+{
+    SwapInfo info;
+    info.ramMb = 0;
+    info.targetSwapMb = 0;
+    info.physSwapMb = 0;
+    info.zramMb = 0;
+    info.rootFreeMb = 0;
+
+    TQString scriptPath = "/opt/tuneperf/tuneperf.sh";
+    if (TQFile::exists("./tuneperf.sh")) scriptPath = "./tuneperf.sh";
+
+    TQtProcess proc;
+    TQStringList args;
+    args << "-S" << "-p" << "" << scriptPath << "--analyze-swap";
+    proc.start("sudo", args);
+    
+    TQString passStr = m_adminPassword + "\n";
+    proc.write(passStr.local8Bit());
+    
+    if (proc.waitForFinished(-1)) {
+        TQByteArray outBytes = proc.readAllStandardOutput();
+        TQString output = TQString::fromUtf8(outBytes.data(), outBytes.size());
+        TQStringList lines = TQStringList::split('\n', output);
+        for (TQStringList::Iterator it = lines.begin(); it != lines.end(); ++it) {
+            TQString line = *it;
+            if (line.startsWith("RAM_MB=")) info.ramMb = line.mid(7).toInt();
+            else if (line.startsWith("TARGET_SWAP_MB=")) info.targetSwapMb = line.mid(15).toInt();
+            else if (line.startsWith("PHYS_SWAP_MB=")) info.physSwapMb = line.mid(13).toInt();
+            else if (line.startsWith("ZRAM_MB=")) info.zramMb = line.mid(8).toInt();
+            else if (line.startsWith("ROOT_FREE_MB=")) info.rootFreeMb = line.mid(13).toInt();
+            else if (line.startsWith("SWAP_DEVICES=")) {
+                TQString devsStr = line.mid(13);
+                TQStringList devs = TQStringList::split(';', devsStr);
+                for (TQStringList::Iterator dit = devs.begin(); dit != devs.end(); ++dit) {
+                    TQStringList parts = TQStringList::split('|', *dit);
+                    if (parts.count() >= 3) {
+                        SwapDeviceInfo sdi;
+                        sdi.name = parts[0];
+                        sdi.type = parts[1];
+                        sdi.sizeMb = parts[2].toInt();
+                        info.devices.append(sdi);
+                    }
+                }
+            }
+        }
+    }
+    return info;
+}
+
+bool TunePerfRunner::provisionSwapfile(int sizeGb)
+{
+    TQString scriptPath = "/opt/tuneperf/tuneperf.sh";
+    if (TQFile::exists("./tuneperf.sh")) scriptPath = "./tuneperf.sh";
+
+    TQtProcess proc;
+    TQStringList args;
+    args << "-S" << "-p" << "" << scriptPath << "--create-swapfile" << TQString::number(sizeGb);
+    proc.start("sudo", args);
+
+    TQString passStr = m_adminPassword + "\n";
+    proc.write(passStr.local8Bit());
+
+    if (proc.waitForFinished(-1)) {
+        return proc.exitCode() == 0;
+    }
+    return false;
+}
+
+bool TunePerfRunner::resizeSwapfile(const TQString& path, int sizeGb)
+{
+    TQString scriptPath = "/opt/tuneperf/tuneperf.sh";
+    if (TQFile::exists("./tuneperf.sh")) scriptPath = "./tuneperf.sh";
+
+    TQtProcess proc;
+    TQStringList args;
+    args << "-S" << "-p" << "" << scriptPath << "--resize-swapfile" << path << TQString::number(sizeGb);
+    proc.start("sudo", args);
+
+    TQString passStr = m_adminPassword + "\n";
+    proc.write(passStr.local8Bit());
+
+    if (proc.waitForFinished(-1)) {
+        return proc.exitCode() == 0;
+    }
+    return false;
+}
+
 #include "tuneperf_runner.moc"

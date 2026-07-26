@@ -9,7 +9,7 @@ ARCH="amd64"
 if command -v dpkg >/dev/null 2>&1; then
     ARCH=$(dpkg --print-architecture)
 fi
-BUILD_DIR="${PACKAGE_NAME}_${VERSION}_${ARCH}"
+BUILD_DIR="tuneperfs-gui_${VERSION}_${ARCH}_static"
 
 echo "=== Preparing Debian Package Build Directory ==="
 # Clean old build directory

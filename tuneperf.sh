@@ -78,6 +78,133 @@ log_step_result() {
     fi
 }
 
+do_analyze_swap() {
+    local ram_kb=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+    local ram_mb=$((ram_kb / 1024))
+    local target_swap_mb=$ram_mb
+    if [ "$ram_mb" -le 8192 ]; then
+        target_swap_mb=$((ram_mb * 15 / 10))
+    fi
+
+    local phys_swap_mb=0
+    local zram_mb=0
+    local swap_devices=""
+
+    while IFS=' ' read -r name type size; do
+        if [ -z "$name" ]; then continue; fi
+        local size_mb=$((size / 1024 / 1024))
+        if [[ "$name" == *zram* ]]; then
+            zram_mb=$((zram_mb + size_mb))
+        else
+            phys_swap_mb=$((phys_swap_mb + size_mb))
+            swap_devices="${swap_devices}${name}|${type}|${size_mb};"
+        fi
+    done < <(/sbin/swapon --show=NAME,TYPE,SIZE --bytes --noheadings 2>/dev/null | awk '{print $1 " " $2 " " $3}')
+    
+    local root_free_kb=$(df -k / | tail -n 1 | awk '{print $4}')
+    local root_free_mb=$((root_free_kb / 1024))
+
+    echo "RAM_MB=$ram_mb"
+    echo "TARGET_SWAP_MB=$target_swap_mb"
+    echo "PHYS_SWAP_MB=$phys_swap_mb"
+    echo "ZRAM_MB=$zram_mb"
+    echo "SWAP_DEVICES=$swap_devices"
+    echo "ROOT_FREE_MB=$root_free_mb"
+}
+
+_update_grub_for_swap() {
+    local file_path="$1"
+    local root_dev=$(df "$file_path" | tail -n 1 | awk '{print $1}')
+    local root_uuid=$(blkid -s UUID -o value "$root_dev")
+    local resume_offset=$(filefrag -v "$file_path" 2>/dev/null | awk 'NR==4 {print $4}' | tr -d '.')
+    
+    if [ -z "$root_uuid" ] || [ -z "$resume_offset" ]; then
+        echo "Warning: Could not determine UUID or resume_offset. GRUB not updated."
+        return 1
+    fi
+    
+    local grub_file="/etc/default/grub"
+    if [ ! -f "$grub_file" ]; then
+        echo "Warning: $grub_file not found."
+        return 1
+    fi
+    
+    cp "$grub_file" "${grub_file}.tuneperf_bak"
+    
+    local resume_str="resume=UUID=$root_uuid resume_offset=$resume_offset"
+    
+    # Remove existing resume= and resume_offset=
+    sed -i 's/resume=[^ "]*//g' "$grub_file"
+    sed -i 's/resume_offset=[^ "]*//g' "$grub_file"
+    # Clean up double spaces
+    sed -i 's/  */ /g' "$grub_file"
+    
+    # Append inside GRUB_CMDLINE_LINUX_DEFAULT before the last quote
+    sed -i "s/^\(GRUB_CMDLINE_LINUX_DEFAULT=\"[^\"]*\)\"/\1 $resume_str\"/" "$grub_file"
+    
+    if command -v update-grub >/dev/null 2>&1; then
+        if ! update-grub; then
+            echo "update-grub failed! Reverting $grub_file..."
+            mv "${grub_file}.tuneperf_bak" "$grub_file"
+            update-grub || true
+            return 1
+        fi
+    fi
+}
+
+do_create_swapfile() {
+    local target_gb="$1"
+    local file_path="${2:-/swapfile}"
+    if [ -z "$target_gb" ]; then
+        echo "Error: target size in GB required"
+        exit 1
+    fi
+    local size_bytes=$((target_gb * 1024 * 1024 * 1024))
+    
+    if [ -e "$file_path" ]; then
+        echo "Error: $file_path already exists"
+        exit 1
+    fi
+    
+    local is_btrfs=0
+    if df -T "$(dirname "$file_path")" 2>/dev/null | grep -q btrfs; then
+        is_btrfs=1
+        touch "$file_path"
+        chattr +C "$file_path" 2>/dev/null || true
+    fi
+    
+    echo "Allocating ${target_gb}GB swapfile at $file_path..."
+    if ! fallocate -l "${size_bytes}" "$file_path" 2>/dev/null; then
+        echo "fallocate failed, using dd (this may take a while)..."
+        dd if=/dev/zero of="$file_path" bs=1M count=$((target_gb * 1024)) status=progress
+    fi
+    
+    chmod 0600 "$file_path"
+    mkswap "$file_path"
+    swapon "$file_path"
+    
+    if ! grep -q "^$file_path" /etc/fstab; then
+        echo "$file_path none swap sw 0 0" >> /etc/fstab
+    fi
+    
+    _update_grub_for_swap "$file_path"
+    echo "Swapfile created and activated successfully."
+}
+
+do_resize_swapfile() {
+    local file_path="$1"
+    local target_gb="$2"
+    if [ -z "$file_path" ] || [ -z "$target_gb" ]; then
+        echo "Error: file path and target size required"
+        exit 1
+    fi
+    
+    echo "Disabling $file_path..."
+    swapoff "$file_path" || true
+    rm -f "$file_path"
+    do_create_swapfile "$target_gb" "$file_path"
+}
+
 parse_args() {
     while [[ $# -gt 0 ]]; do
         case $1 in
@@ -91,6 +218,9 @@ parse_args() {
                 echo "TunePerf Version $TUNEPERF_VERSION"
                 exit 0
                 ;;
+            --analyze-swap) do_analyze_swap; exit 0 ;;
+            --create-swapfile) do_create_swapfile "$2"; exit 0 ;;
+            --resize-swapfile) do_resize_swapfile "$2" "$3"; exit 0 ;;
             -h|--help)
                 echo "Usage: tuneperf.sh [OPTIONS]"
                 echo "  --apply                Run non-interactively (uses last saved profile or defaults)"
@@ -98,6 +228,9 @@ parse_args() {
                 echo "  --dry-run              Show what would be generated, do not apply"
                 echo "  --restore              Restore sysctl backups and disable persistence"
                 echo "  --disable-mitigations  DANGEROUS: Add mitigations=off to GRUB for max performance"
+                echo "  --analyze-swap         Analyze swap configuration for hibernation readiness"
+                echo "  --create-swapfile      Create and configure a /swapfile for hibernation"
+                echo "  --resize-swapfile      Resize an existing /swapfile"
                 echo "  -v, --version          Show version information"
                 exit 0
                 ;;

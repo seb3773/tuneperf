@@ -9,7 +9,7 @@ ARCH="amd64"
 if command -v dpkg >/dev/null 2>&1; then
     ARCH=$(dpkg --print-architecture)
 fi
-RELEASE_NAME="${PACKAGE_NAME}_${VERSION}_${ARCH}_dynamic"
+RELEASE_NAME="${PACKAGE_NAME}_${VERSION}_${ARCH}"
 
 echo "=== Preparing Tarball Build Directory ==="
 rm -rf "$RELEASE_NAME"
