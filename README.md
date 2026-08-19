@@ -118,6 +118,9 @@ TunePerf includes simple scripts to compile and package the GUI client for relea
 * `./build_deb.sh` — Compiles and builds the dynamic package (**tuneperfs-gui_1.0_amd64.deb**).
 * `./build_static_deb.sh` — Compiles and builds the standalone static package (**tuneperfs-gui-static_1.0_amd64.deb**).
 
+### Create Q4OS Installer (.qsi):
+* `./build_qsi.sh` — Compiles and packages the native Q4OS Installer (**setup_tuneperfs-gui_1.0.qsi**).
+
 ### Create Archive Tarballs:
 * `./build_tar.sh` — Packages the dynamic build as a compressed archive (**tuneperfs-gui_1.0_amd64_dynamic.tar.gz**).
 * `./build_static_tar.sh` — Packages the standalone static build as a compressed archive (**tuneperfs-gui_1.0_amd64_static.tar.gz**).

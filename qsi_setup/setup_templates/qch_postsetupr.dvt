@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+
+# Update Trinity Desktop service and menu database
+if [ -x /opt/trinity/bin/tdebuildsycoca ]; then
+    /opt/trinity/bin/tdebuildsycoca >/dev/null 2>&1 || true
+fi
+
+exit 0
