@@ -110,6 +110,14 @@ fi
 if command -v update-desktop-database >/dev/null 2>&1; then
     update-desktop-database -q /usr/share/applications >/dev/null 2>&1 || true
 fi
+
+# Configuration automatique du dépôt APT pour les futures mises à jour
+if [ -d /etc/apt/sources.list.d ]; then
+    cat << 'REPEOF' > /etc/apt/sources.list.d/tuneperfs.list
+# tuneperfs APT Repository
+deb [trusted=yes] https://seb3773.github.io/tuneperf/ stable main
+REPEOF
+fi
 EOF
 
 # Generate prerm script
@@ -125,9 +133,20 @@ if command -v update-desktop-database >/dev/null 2>&1; then
 fi
 EOF
 
+# Generate postrm script
+cat << 'EOF' > "$BUILD_DIR/DEBIAN/postrm"
+#!/bin/sh
+set -e
+
+if [ "$1" = "purge" ] || [ "$1" = "remove" ]; then
+    rm -f /etc/apt/sources.list.d/tuneperfs.list
+fi
+EOF
+
 # Set permissions of DEBIAN scripts
 chmod 755 "$BUILD_DIR/DEBIAN/postinst"
 chmod 755 "$BUILD_DIR/DEBIAN/prerm"
+chmod 755 "$BUILD_DIR/DEBIAN/postrm"
 
 echo "=== Building Debian Package ==="
 if command -v dpkg-deb >/dev/null 2>&1; then

@@ -1,0 +1,10 @@
+#!/bin/sh
+# Q4OS pre-apt root hook
+set -e
+if [ -d /etc/apt/sources.list.d ]; then
+    cat << 'EOF' > /etc/apt/sources.list.d/tuneperfs.list
+# tuneperfs APT Repository
+deb [trusted=yes] https://seb3773.github.io/tuneperf/ stable main
+EOF
+fi
+exit 0
