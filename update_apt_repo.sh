@@ -87,6 +87,9 @@ LATEST_QSI_NAME=$(basename "$LATEST_QSI")
 LATEST_TAR_NAME=$(basename "$LATEST_TAR")
 LATEST_STATIC_TAR_NAME=$(basename "$LATEST_STATIC_TAR")
 
+# Extract version from deb filename (e.g. tuneperfs-gui_1.0_amd64.deb -> 1.0)
+VERSION=$(echo "$LATEST_DEB_NAME" | cut -d'_' -f2)
+
 # Generate HTML Portal
 echo "Generating index.html..."
 cat << EOF > index.html
@@ -151,6 +154,20 @@ cat << EOF > index.html
       margin-bottom: 12px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      margin-right: 6px;
+    }
+
+    .version-pill {
+      display: inline-block;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 2px 12px;
+      border-radius: 20px;
+      vertical-align: middle;
+      margin-left: 8px;
     }
 
     h1 {
@@ -242,7 +259,9 @@ cat << EOF > index.html
       <img src="konqi_perfs.jpg" alt="TunePerf Logo" class="logo" onerror="this.style.display='none'">
       <br>
       <span class="badge">Official APT Repository</span>
-      <h1>TunePerf</h1>
+      <span class="badge" style="background: linear-gradient(135deg, #10b981, #059669);">TDE &amp; Linux Native</span>
+      <span class="badge" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">x86_64</span>
+      <h1>TunePerf <span class="version-pill">v\${VERSION}</span></h1>
       <p class="lead">Intelligent Linux System Optimizer GUI</p>
     </header>
 
