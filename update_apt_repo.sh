@@ -122,13 +122,52 @@ cat << EOF > index.html
 
     .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
 
-    .header-image {
-      width: 100%; max-width: 700px; display: block; margin: 0 auto 30px;
-      border-radius: var(--radius); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    header {
+      text-align: center;
+      margin-bottom: 40px;
     }
 
-    h1 { font-size: 2.5rem; text-align: center; margin-bottom: 10px; font-weight: 700; letter-spacing: -0.5px; }
-    p.subtitle { text-align: center; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 40px; }
+    .logo {
+      width: 110px;
+      height: 110px;
+      margin-bottom: 16px;
+      border-radius: 50%; /* Just in case it's not a transparent png */
+      filter: drop-shadow(0 8px 24px rgba(58, 134, 255, 0.45));
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .logo:hover {
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+      border-radius: 20px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    p.lead {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto;
+    }
 
     .card {
       background: var(--surface); border: var(--border); border-radius: var(--radius);
@@ -199,10 +238,13 @@ cat << EOF > index.html
 <body>
 
   <div class="container">
-    <img src="konqi_perfs.jpg" alt="TunePerf Konqi" class="header-image" onerror="this.style.display='none'">
-    
-    <h1>TunePerf</h1>
-    <p class="subtitle">Intelligent Linux System Optimizer GUI</p>
+    <header>
+      <img src="konqi_perfs.jpg" alt="TunePerf Logo" class="logo" onerror="this.style.display='none'">
+      <br>
+      <span class="badge">Official APT Repository</span>
+      <h1>TunePerf</h1>
+      <p class="lead">Intelligent Linux System Optimizer GUI</p>
+    </header>
 
     <!-- Method 1: APT Repository -->
     <div class="card">
