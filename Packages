@@ -1,0 +1,38 @@
+Package: tuneperfs-gui
+Architecture: amd64
+Version: 1.0
+Priority: optional
+Section: utils
+Maintainer: seb3773
+Depends: libtqt-mt | libtqt3-mt | libtqt-mt-trinity | libtqt3-mt-trinity, tdelibs14-trinity | tdelibs-trinity
+Filename: pool/main/t/tuneperfs/tuneperfs-gui_1.0_amd64.deb
+Size: 181264
+MD5sum: 86d992bc1bfaa8836c092e0f1a2af502
+SHA1: 42d5c71a2af408164e6b35a5bd272aab778f5d58
+SHA256: 3eb756f2235f2b5ec840a0bd830a82d2d328ba9455ad5530adc31329fcfa115d
+SHA512: 32d095d4c3f7a3d449988a054e2e0bf1a6bbe08370e9c7840f3791eb3bc17409ab6d23a8b2630769a73400404c2b8fa0d73904bc0d35086952db2f6a84644594
+Description: Intelligent Linux system optimizer and manager GUI
+ TunePerf scans system topology to dynamically generate and apply
+ optimized system kernel parameters, scheduler settings, network cache
+ buffers, and SysV limits. It executes as a one-shot payload at boot.
+ This package contains the TDE integration client.
+
+Package: tuneperfs-gui-static
+Architecture: amd64
+Version: 1.0
+Priority: optional
+Section: utils
+Maintainer: seb3773
+Depends: libx11-6, libxext6, libxrender1, libxrandr2, libxcursor1, libxinerama1, libxft2, libfontconfig1, libfreetype6, libpng16-16, libjpeg62-turbo | libjpeg8, libuuid1, zlib1g
+Filename: pool/main/t/tuneperfs/tuneperfs-gui_1.0_amd64_static.deb
+Size: 1000000
+MD5sum: fcc6cae6a13d71dcf1a6fd47e1b54fce
+SHA1: 531ee88b5de479a66664a9f3512b25e6bc5e743a
+SHA256: c81ca99ff430415fea825b6761c257f09c86315b19e06ab31a3628aa40b8ed4a
+SHA512: 060773ec9cb40cf983ecf440ead4a54bc647f9b37d9d10734cfe5d50f28ee9d2d03496275f8bab4a4690e8ab23e6bd712861bcdee701d2850f0aff1944a3d59e
+Description: Intelligent Linux system optimizer and manager GUI (static build)
+ TunePerf scans system topology to dynamically generate and apply
+ optimized system kernel parameters, scheduler settings, network cache
+ buffers, and SysV limits. It executes as a one-shot payload at boot.
+ This package contains the statically linked standalone desktop client.
+
