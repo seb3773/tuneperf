@@ -291,7 +291,7 @@ cat << EOF > index.html
             <span class="download-title">Debian Package (.deb)</span>
             <span class="download-tag">Native</span>
           </div>
-          <p class="download-desc">Debian/Ubuntu native installers. Available in dynamic (system Qt) or static standalone build.</p>
+          <p class="download-desc">Debian/Ubuntu native installers. Available in dynamic (tqt3, for TDE users) or static standalone build.</p>
           <a href="pool/main/t/tuneperfs/${LATEST_DEB_NAME}" class="btn-download" style="margin-bottom: 8px;">
             Download Dynamic .deb
           </a>
